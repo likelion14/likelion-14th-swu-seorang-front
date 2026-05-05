@@ -1,0 +1,39 @@
+.tab-container {
+  display: flex;
+  background:#07BCED;
+  border-radius: 6px;
+  width: 343px;
+  height: 38px;
+
+  box-sizing: border-box;
+}
+
+.tab {
+  flex: 1;
+  display: flex;               
+  align-items: center;         
+  justify-content: center; 
+
+  border-radius: 4px;
+  text-decoration: none;
+
+  color: #F9FAFA;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.tab.active {
+  background: #F9FAFA;         
+  color: #007495;
+  border-radius: 6px;
+  width: 84px;
+  height: 100%;
+
+
+  box-shadow:
+    0px 0px 2px 0px #FFFFFF4D ,    
+    1px -2px 6px 0px #0000001A inset,    
+    2px -2px 6px 0px #1CCAFB66 inset,    
+    -2px 2px 2px 0px #1CCAFB4D inset;  
+}
