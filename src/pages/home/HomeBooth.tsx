@@ -1,6 +1,13 @@
+import Header from "../../component/header";
+import Tab from "../../component/Tab";
+
 export default function HomeBooth() {
   return (
     <div style={{ padding: "20px" }}>
+      <Header />
+
+      <Tab />
+
       <p style={{ fontFamily: "Moneygraphy", fontSize: "28px" }}>
         Moneygraphy 폰트 테스트
       </p>
