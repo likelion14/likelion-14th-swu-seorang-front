@@ -2,7 +2,8 @@
   display: flex;
   background:#07BCED;
   border-radius: 6px;
-  width: 343px;
+  width: 100%;
+  max-width: 343px;
   height: 38px;
 
   box-sizing: border-box;
