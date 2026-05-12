@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Chevron from "../../assets/icon/Chevron-Left-Blue.svg";
 import styles from "./SignUp.module.css";
 import CheckOn from "../../assets/icon/Btn/CheckBox-Active.svg";
@@ -61,6 +62,7 @@ export default function SignUp() {
     const [phone, setPhone] = useState("");
     const [isChecked, setIsChecked] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const navigate = useNavigate();
 
     const majorError = submitted && search.trim() === "";
     const studentIdEmptyError = submitted && studentId.trim() === "";
@@ -88,11 +90,17 @@ export default function SignUp() {
 
     return (
         <div className={styles.container}>
-            <img
-                src={Chevron}
-                alt="뒤로가기"
-                className={styles.chevron}
-            />
+            <button
+                type="button"
+                className={styles.backButton}
+                onClick={() => navigate("/login")}
+            >
+                <img
+                    src={Chevron}
+                    alt="뒤로가기"
+                    className={styles.chevron}
+                />
+            </button>
 
             <p className={styles.title}>회원가입</p>
 

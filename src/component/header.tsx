@@ -9,7 +9,9 @@ export default function Header() {
             <Link to="/">
                 <img src={logo} alt="logo" className="logo" />
             </Link>
+            <Link to="/login">
             <img src={userIcon} alt="user" className="user" />
+            </Link>
         </header>
     );
 }
