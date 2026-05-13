@@ -29,6 +29,66 @@ export default function Login() {
         phone.trim() !== "" &&
         phone.includes("-");
 
+    const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+    const handleLogin = async () => {
+        setSubmitted(true);
+        setLoginError(false);
+
+        const hasError =
+            studentId.trim() === "" ||
+            !/^\d{10}$/.test(studentId) ||
+            phone.trim() === "";
+
+        if (hasError) {
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                `${BASE_URL}/api/users/login`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+
+                    credentials: "include",
+
+                    body: JSON.stringify({
+                        studentId,
+                        phone: phone.replaceAll("-", ""),
+                    }),
+                }
+            );
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem(
+                    "accessToken",
+                    data.accessToken
+                );
+
+                localStorage.setItem(
+                    "role",
+                    data.role
+                );
+
+                if (data.recentPage) {
+                    navigate(data.recentPage);
+                } else {
+                    navigate("/");
+                }
+            } else {
+                setLoginError(true);
+            }
+        } catch (error) {
+            console.error(error);
+            setLoginError(true);
+        }
+    };
+
 
     return (
         <div className={styles.container}>
@@ -60,7 +120,12 @@ export default function Login() {
             >
                 <input
                     value={studentId}
-                    onChange={(e) => setStudentId(e.target.value)}
+                    onChange={(e) => {
+                        setStudentId(e.target.value);
+
+                        setSubmitted(false);
+                        setLoginError(false);
+                    }}
                     placeholder="학번을 입력하세요"
                     className={styles.basicInput}
                 />
@@ -97,7 +162,12 @@ export default function Login() {
             >
                 <input
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => {
+                        setPhone(e.target.value);
+
+                        setSubmitted(false);
+                        setLoginError(false);
+                    }}
                     placeholder="전화번호를 입력하세요"
                     className={styles.basicInput}
                 />
@@ -135,21 +205,7 @@ export default function Login() {
 
             <button
                 className={styles.submitButton}
-                onClick={() => {
-                    setSubmitted(true);
-
-                    const hasError =
-                        studentId.trim() === "" ||
-                        !/^\d{10}$/.test(studentId) ||
-                        phone.trim() === "" ||
-                        phone.includes("-");
-
-                    if (!hasError) {
-                        setLoginError(true);
-                    } else {
-                        setLoginError(false);
-                    }
-                }}
+                onClick={handleLogin}
             >
                 <img
                     src={LoginButton}
