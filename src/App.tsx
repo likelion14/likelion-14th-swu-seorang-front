@@ -1,4 +1,7 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
+import { saveRecentPage } from "./api/saveRecentPage";
 import HomeBooth from "../src/pages/home/HomeBooth";
 import SignUp from "../src/pages/apply/SignUp";
 import Login from "../src/pages/apply/Login";
@@ -7,6 +10,12 @@ import Certificate from "../src/pages/certificate/Certificate";
 import CertificateUpload from "../src/pages/certificate/CertificateUpload";
 
 const App = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    saveRecentPage(location.pathname);
+  }, [location.pathname]);
+
   return (
     <>
 

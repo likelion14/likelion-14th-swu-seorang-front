@@ -63,7 +63,9 @@ export default function SignUp() {
     const [isChecked, setIsChecked] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const navigate = useNavigate();
-
+    const [studentIdDuplicateError, setStudentIdDuplicateError] = useState(false);
+    const [phoneDuplicateError, setPhoneDuplicateError] = useState(false);
+    
     const majorError = submitted && search.trim() === "";
     const studentIdEmptyError = submitted && studentId.trim() === "";
     const studentIdFormatError =
@@ -87,6 +89,58 @@ export default function SignUp() {
     const filteredMajors = majors.filter((major) =>
         major.includes(search)
     );
+
+    const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+    const handleSubmit = async () => {
+        setSubmitted(true);
+
+        setStudentIdDuplicateError(false);
+        setPhoneDuplicateError(false);
+
+        if (
+            search.trim() === "" ||
+            studentId.trim() === "" ||
+            name.trim() === "" ||
+            phone.trim() === "" ||
+            !/^\d{10}$/.test(studentId) ||
+            phone.includes("-")
+        ) {
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                `${BASE_URL}/api/users/signup`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        studentId,
+                        name,
+                        phone,
+                        departmentName: search,
+                    }),
+                }
+            );
+
+            const data = await response.json();
+
+            if (response.ok) {
+                navigate("/login");
+            } else if (data.code === "DUPLICATE_PHONE") {
+                setPhoneDuplicateError(true);
+            } else if (
+                data.code === "DUPLICATE_STUDENT_ID"
+            ) {
+                setStudentIdDuplicateError(true);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div className={styles.container}>
@@ -186,6 +240,16 @@ export default function SignUp() {
                 </div>
             )}
 
+            {studentIdDuplicateError && (
+                <div className={styles.errorRow}>
+                    <img src={ErrorIcon} alt="에러" />
+
+                    <p className={styles.errorText}>
+                        이미 가입된 학번입니다.
+                    </p>
+                </div>
+            )}
+
             <p className={styles.label}>이름</p>
 
             <div
@@ -247,6 +311,16 @@ export default function SignUp() {
                 </div>
             )}
 
+            {phoneDuplicateError && (
+                <div className={styles.errorRow}>
+                    <img src={ErrorIcon} alt="에러" />
+
+                    <p className={styles.errorText}>
+                        이미 사용 중인 전화번호입니다.
+                    </p>
+                </div>
+            )}
+
 
             <p className={styles.label}>개인정보 수집 동의</p>
             <div className={styles.agreementBox}>
@@ -286,12 +360,12 @@ export default function SignUp() {
 
             <button
                 className={styles.submitButton}
-                onClick={() => setSubmitted(true)}
+                onClick={handleSubmit}
                 disabled={!isValid}
             >
                 <img
                     src={isValid ? ActiveButton : DisabledButton}
-                    alt="다음 버튼"
+                    alt="회원가입 버튼"
                 />
             </button>
 
