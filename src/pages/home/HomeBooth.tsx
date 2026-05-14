@@ -1,25 +1,38 @@
+import { useState } from "react";
 import Header from "../../component/header";
 import Tab from "../../component/Tab";
+import BoothTab from "../../component/BoothTab";
 
 export default function HomeBooth() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const renderContent = () => {
+    switch (currentIndex) {
+      case 0:
+        return <div>학과부스 컨텐츠</div>;
+      case 1:
+        return <div>푸드트럭 컨텐츠</div>;
+      case 2:
+        return <div>플리마켓 컨텐츠</div>;
+      case 3:
+        return <div>슈니네컷 컨텐츠</div>;
+      default:
+        return <div>학과부스 컨텐츠</div>;
+    }
+  };
+
   return (
     <div style={{ padding: "20px" }}>
       <Header />
 
       <Tab />
 
-      <p style={{ fontFamily: "Moneygraphy", fontSize: "28px" }}>
-        Moneygraphy 폰트 테스트
-      </p>
+      <BoothTab 
+        currentIndex={currentIndex} 
+        onIndexChange={setCurrentIndex} 
+      />
 
-      <p style={{ fontFamily: "Moneygraphy", fontSize: "18px" }}>
-        가나다라마바사 abcdefg 12345
-      </p>
-
-
-      <p style={{ fontFamily: "system-ui", fontSize: "18px" }}>
-        폰트 테스트용 기본 시스템 폰트
-      </p>
+      {renderContent()}
     </div>
   );
 }
