@@ -8,6 +8,7 @@ import Login from "../src/pages/apply/Login";
 import Frame from "../src/pages/frame/Frame";
 import Certificate from "../src/pages/certificate/Certificate";
 import CertificateUpload from "../src/pages/certificate/CertificateUpload";
+import CertificateEdit from "./pages/certificate/CertificateEdit";
 
 const App = () => {
   const location = useLocation();
@@ -30,7 +31,7 @@ const App = () => {
 
         <Route path="certificate" element={<Certificate />} />
         <Route path="certificate/upload" element={<CertificateUpload />} />
-        <Route path="certificate/edit/:id" element={<CertificateUpload />} />
+        <Route path="certificate/edit/:id" element={<CertificateEdit />} />
 
       </Routes>
     </>

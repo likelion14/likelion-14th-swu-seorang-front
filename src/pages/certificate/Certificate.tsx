@@ -12,6 +12,8 @@ import FabNoticeImg from "../../assets/img/FabNotice.svg";
 import CloseButton from "../../assets/icon/Btn/CloseButton.svg";
 import CancelButton from "../../assets/icon/Btn/CancelButton.svg";
 import DeleteConfirmButton from "../../assets/icon/Btn/DeleteConfirmButton.svg";
+import ModalBack from "../../assets/icon/Btn/Modal-Back.svg";
+import ModalLogin from "../../assets/icon/Btn/Modal-Login.svg";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -19,7 +21,8 @@ type FeedItem = {
   postId: number;
   imgUrl?: string;
   likeCount: number;
-  liked: boolean;
+  isLiked: boolean;
+  isOwner: boolean;
   tag1: string;
   tag2?: string;
   tag3?: string | null;
@@ -28,26 +31,29 @@ type FeedItem = {
 
 export default function Certificate() {
   const navigate = useNavigate();
+  const isLoggedIn = !!localStorage.getItem("accessToken");
   const [feed, setFeed] = useState<FeedItem[]>([]);
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
   const [deleteTargetId, setDeleteTargetId] = useState<number | null>(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   useEffect(() => {
-  fetch(`${BASE_URL}/api/posts`)
-    .then(res => res.json())
-    .then(data =>{
-      console.log(data);
-      setFeed(
-        data.map((item: Omit<FeedItem, "liked">) => ({
-          ...item,
-          liked: false,
-        }))
-      )
-  })
-    .catch(err => console.error("피드 불러오기 실패:", err));
-}, []);
+    const token = localStorage.getItem("accessToken");
+    fetch(`${BASE_URL}/api/posts`, { 
+      headers: token ? {Authorization: `Bearer ${token}`} : {},
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) setFeed(data);
+      })
+      .catch(err => console.error("피드 불러오기 실패:", err));
+  }, []);
 
   const toggleLike = async (postId: number) => {
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+      return;
+    }
     const token = localStorage.getItem("accessToken");
     try {
       const res = await fetch(`${BASE_URL}/api/posts/${postId}/like`, {
@@ -58,7 +64,7 @@ export default function Certificate() {
       setFeed(prev =>
         prev.map(item =>
           item.postId === postId
-            ? { ...item, likeCount: data.likeCount, liked: data.liked }
+            ? { ...item, likeCount: data.likeCount, isLiked: data.liked }
             : item
         )
       );
@@ -101,7 +107,7 @@ export default function Certificate() {
                   )}
                 </div>
 
-                {item.authorId && (
+                {item.isOwner && (
                   <div className={styles.dotMenuWrapper}>
                     <button
                       className={styles.dotMenuBtn}
@@ -117,7 +123,7 @@ export default function Certificate() {
                         <button
                           className={styles.dropdownItem}
                           onClick={() => {
-                            navigate(`/certificate/edit/${item.postId}`);
+                            navigate(`/certificate/edit/${item.postId}`, { state: {post: item }});
                             setOpenMenuId(null);
                           }}
                         >
@@ -140,7 +146,7 @@ export default function Certificate() {
 
                 <div className={styles.cardBottom}>
                   <button className={styles.heartBtn} onClick={() => toggleLike(item.postId)}>
-                    <img src={item.liked ? LikeIcon : UnLikeIcon} alt="좋아요" className={styles.heartImg} />
+                    <img src={item.isLiked ? LikeIcon : UnLikeIcon} alt="좋아요" className={styles.heartImg} />
                     <span className={styles.heartCount}>{item.likeCount}</span>
                   </button>
                   <div className={styles.tagBar}>
@@ -155,12 +161,14 @@ export default function Certificate() {
         </div>
       </div>
 
+      {isLoggedIn && (
       <div className={styles.fabWrapper}>
         <img src={FabNoticeImg} alt="이벤트 안내" className={styles.fabnotice} />
         <button className={styles.fabBtn} onClick={() => navigate("/certificate/upload")}>
           <img src={FabImg} alt="사진 업로드" className={styles.fabimg} />
         </button>
       </div>
+      )}
 
       {deleteTargetId !== null && (
         <div className={styles.overlay} onClick={() => setDeleteTargetId(null)}>
@@ -189,6 +197,34 @@ export default function Certificate() {
           </div>
         </div>
       )}
+
+
+      {showLoginModal && (
+        <div className={styles.overlay} onClick={() => setShowLoginModal(false)}>
+          <div className={styles.modal} onClick={e => e.stopPropagation()}>
+            <div className={styles.modalTop}>
+              <div className={styles.modalTextGroup}>
+                <p className={styles.modalHeading}>로그인이 필요한 서비스예요</p>
+              </div>
+              <button className={styles.closeBtn} onClick={() => setShowLoginModal(false)}>
+                <img src={CloseButton} alt="닫기" className={styles.closeBtnImg} />
+              </button>
+            </div>
+            <p className={styles.modalDesc}>
+              좋아요 기능은 로그인 후 이용할 수 있어요.
+            </p>
+            <div className={styles.modalBtns}>
+              <button className={styles.modalBtn} onClick={() => setShowLoginModal(false)}>
+                <img src={ModalBack} alt="돌아가기" className={styles.modalBtnImg} />
+              </button>
+              <button className={styles.modalBtn} onClick={() => navigate("/login")}>
+                <img src={ModalLogin} alt="로그인" className={styles.modalBtnImg} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
