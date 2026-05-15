@@ -3,9 +3,13 @@ import Header from "../../component/header";
 import Tab from "../../component/Tab";
 import BoothTab from "../../component/BoothTab";
 import BoothLocationInfo from "../../component/BoothLocationInfo";
+import MapBoothMap from "../../component/MapBoothMap";
+import type { FestivalDay } from "../../types/booth";
+import styles from "./HomeBooth.module.css";
 
 export default function HomeBooth() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedDay, setSelectedDay] = useState<FestivalDay>("2025-05-22");
 
   const getLocationText = () => {
     switch (currentIndex) {
@@ -22,33 +26,39 @@ export default function HomeBooth() {
     }
   };
 
+  const locationText = getLocationText();
+
   const renderContent = () => {
+    if (currentIndex === 0) {
+      return (
+        <MapBoothMap
+          selectedDay={selectedDay}
+          onDayChange={setSelectedDay}
+        />
+      );
+    }
+
     switch (currentIndex) {
-      case 0:
-        return <div>학과부스 컨텐츠</div>;
       case 1:
-        return <div>푸드트럭 컨텐츠</div>;
+        return <div className={styles.placeholder}>푸드트럭 컨텐츠</div>;
       case 2:
-        return <div>플리마켓 컨텐츠</div>;
+        return <div className={styles.placeholder}>플리마켓 컨텐츠</div>;
       case 3:
-        return <div>슈니네컷 컨텐츠</div>;
+        return <div className={styles.placeholder}>슈니네컷 컨텐츠</div>;
       default:
-        return <div>학과부스 컨텐츠</div>;
+        return null;
     }
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className={styles.page}>
       <Header />
 
       <Tab />
 
-      <BoothTab 
-        currentIndex={currentIndex} 
-        onIndexChange={setCurrentIndex} 
-      />
+      <BoothTab currentIndex={currentIndex} onIndexChange={setCurrentIndex} />
 
-      <BoothLocationInfo locationText={getLocationText()} />
+      <BoothLocationInfo locationText={locationText} />
 
       {renderContent()}
     </div>
