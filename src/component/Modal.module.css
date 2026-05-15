@@ -1,57 +1,67 @@
 .overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
 }
 
 .modal {
-  width: 320px;
-  background: rgba(255, 255, 255, 1);
-  border-radius: 24px;
-  padding: 22px;
-  position: relative;
+    width: 320px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 24px;
+    padding: 22px;
+    position: relative;
 }
 
 .closeButton {
-  position: absolute;
-  top: 25px;
-  right: 20px;
-  border: none;
-  background: transparent;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    border: none;
+    background: transparent;
 
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .title {
-  margin-top: 28px;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: system-ui;
-  text-align:justify;
-  color: rgba(51, 54, 61, 1);
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: system-ui;
+    text-align: justify;
+    color: rgba(51, 54, 61, 1);
 }
 
 .description {
-  margin-top: 14px;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(109, 120, 130, 1);
-  font-family: system-ui;
-  text-align:justify;
-  line-height: 1.5;
+    margin-top: 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(109, 120, 130, 1);
+    font-family: system-ui;
+    text-align: justify;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
 }
 
 .buttonWrapper {
-  display: flex;
-  gap: 8px;
-  margin-top: 30px;
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
 }
 
 .buttonImage {
-  flex: 1;
-  cursor: pointer;
+    flex: 1;
+    cursor: pointer;
+}
+
+.type {
+    margin-top: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: system-ui;
+    text-align: justify;
+    color: rgba(51, 54, 61, 1);
 }

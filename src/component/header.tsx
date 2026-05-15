@@ -4,7 +4,7 @@ import logo from "../assets/icon/Lion-Logo.svg";
 import userIcon from "../assets/icon/User-icon.svg";
 import "../component/header.css";
 import CancelButton from "../assets/icon/Btn/Modal-Back.svg";
-import LogoutButton from "../assets/icon/Btn/Modal-Login.svg";
+import LogoutButton from "../assets/icon/Btn/Modal-Logout.svg";
 import "../component/header.css";
 import ConfirmModal from "./Modal";
 
@@ -51,8 +51,9 @@ export default function Header() {
             </header>
             {showModal && (
                 <ConfirmModal
-                    title="로그아웃 하시겠습니까?"
-                    description="로그아웃 시 다시 로그인해야 서비스를 이용할 수 있습니다."
+                    type="로그아웃"
+                    title="로그아웃 할까요?"
+                    description="로그아웃을 원하지 않는 경우 '돌아가기' 버튼을 눌러주세요."
 
                     cancelButtonImage={CancelButton}
                     confirmButtonImage={LogoutButton}
