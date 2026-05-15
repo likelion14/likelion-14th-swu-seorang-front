@@ -1,0 +1,185 @@
+.container {
+    width: 100%;
+    min-height: 100dvh;
+    padding: 20px 16px 80px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    gap: 10px;
+}
+
+/* 날짜 영역 */
+
+.dateSection {
+    width: 100%;
+    max-width: 343px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.dateText {
+    font-size: 24px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    -webkit-text-stroke: 5px rgba(7, 188, 237, 1);
+    line-height: 1;
+    paint-order: stroke fill;
+}
+
+
+.arrowButton {
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 아티스트 공연 리스트 */
+.artistCard {
+    position: relative;
+    width: 100%;
+    max-width: 343px;
+    overflow: visible;
+}
+
+.artistBg {
+    width: 343px;
+    height: 208px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.artistBadge {
+    position: absolute;
+    top: -33px;
+    left: -2px;
+    z-index: 2;
+}
+
+.starIcon {
+    position: absolute;
+    right: 10px;
+    bottom: -15px;
+    z-index: 3;
+    width: 40px;
+}
+
+.starIconMusic {
+    position: absolute;
+    right: 5px;
+    bottom: 230px;
+    z-index: 3;
+    width: 40px;
+}
+
+.previewBtn {
+    position: absolute;
+
+    left: 50%;
+    bottom: 16px;
+
+    transform: translateX(-50%);
+    z-index: 3;
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+/* 동아리 공연 리스트 */
+.performanceList {
+    width: 100%;
+    max-width: 343px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.card {
+    width: 100%;
+    max-width: 343px;
+    height: 78px;
+
+    border-radius: 12px;
+    border: 2px solid rgba(249, 250, 250, 1);
+
+    background: rgba(255, 255, 255, 0.5);
+
+    padding: 0 14px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.artistImage {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.textWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.teamName {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(0, 116, 149, 1);
+}
+
+.time {
+    font-size: 12px;
+    font-family: system-ui;
+    color: rgba(109, 120, 130, 1);
+}
+
+.sectionLabel {
+    align-self: flex-start;
+    margin-top: 14px;
+    margin-bottom: 2px;
+    margin-left: 10px;
+    padding: 6px 8px;
+    background: rgba(28, 202, 251, 1);
+    border-radius: 4px;
+    color: rgba(249, 250, 250, 1);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.musicWrapper {
+    width: 343px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+
+    display: flex;
+}
+
+.appleMusic {
+    width: 100%;
+    border: none;
+
+    display: block;
+
+    overflow: hidden;
+}

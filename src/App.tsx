@@ -5,6 +5,7 @@ import { saveRecentPage } from "./api/saveRecentPage";
 import HomeBooth from "../src/pages/home/HomeBooth";
 import SignUp from "../src/pages/apply/SignUp";
 import Login from "../src/pages/apply/Login";
+import Performance from "../src/pages/performance/performance";
 import Frame from "../src/pages/frame/Frame";
 import Certificate from "../src/pages/certificate/Certificate";
 import CertificateUpload from "../src/pages/certificate/CertificateUpload";
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="login" element={<Login />} />
 
         <Route path="frame" element={<Frame />} />
+        <Route path="performance" element={<Performance />} />
 
         <Route path="certificate" element={<Certificate />} />
         <Route path="certificate/upload" element={<CertificateUpload />} />
