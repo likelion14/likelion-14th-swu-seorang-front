@@ -4,6 +4,7 @@ interface BoothInfoButtonProps {
   labels: string[];
   wide?: boolean;
   tall?: boolean;
+  large?: boolean;
   selected?: boolean;
   onClick?: () => void;
 }
@@ -12,6 +13,7 @@ export default function BoothInfoButton({
   labels,
   wide = false,
   tall = false,
+  large = false,
   selected = false,
   onClick,
 }: BoothInfoButtonProps) {
@@ -19,8 +21,8 @@ export default function BoothInfoButton({
     <button
       type="button"
       className={`${styles.btn} ${wide ? styles.wide : ""} ${tall ? styles.tall : ""} ${
-        selected ? styles.selected : ""
-      }`}
+        large ? styles.large : ""
+      } ${selected ? styles.selected : ""}`}
       onClick={onClick}
     >
       {labels.map((label, index) => (

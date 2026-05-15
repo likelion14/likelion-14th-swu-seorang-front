@@ -4,6 +4,7 @@ import Tab from "../../component/Tab";
 import BoothTab from "../../component/BoothTab";
 import BoothLocationInfo from "../../component/BoothLocationInfo";
 import MapBoothMap from "../../component/MapBoothMap";
+import ShuniBoothMap from "../../component/ShuniBoothMap";
 import type { FestivalDay } from "../../types/booth";
 import styles from "./HomeBooth.module.css";
 
@@ -44,7 +45,7 @@ export default function HomeBooth() {
       case 2:
         return <div className={styles.placeholder}>플리마켓 컨텐츠</div>;
       case 3:
-        return <div className={styles.placeholder}>슈니네컷 컨텐츠</div>;
+        return <ShuniBoothMap />;
       default:
         return null;
     }
