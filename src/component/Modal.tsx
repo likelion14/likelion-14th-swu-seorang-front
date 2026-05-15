@@ -2,6 +2,7 @@ import styles from "./Modal.module.css";
 import CloseIcon from "../assets/icon/Btn/CloseButton.svg";
 
 interface ConfirmModalProps {
+    type: string;
     title: string;
     description: string;
 
@@ -13,6 +14,7 @@ interface ConfirmModalProps {
 }
 
 export default function ConfirmModal({
+    type,
     title,
     description,
     cancelButtonImage,
@@ -33,6 +35,10 @@ export default function ConfirmModal({
                         alt="닫기"
                     />
                 </button>
+
+                <p className={styles.type}>
+                    {type}
+                </p>
 
                 <p className={styles.title}>
                     {title}
