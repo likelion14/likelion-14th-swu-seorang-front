@@ -10,9 +10,9 @@ export const saveRecentPage = async (
 
     try {
         await fetch(
-            `${BASE_URL}/api/users/recent-page`,
+            `${BASE_URL}/api/users/recent`,
             {
-                method: "POST",
+                method: "PATCH",
 
                 headers: {
                     "Content-Type":
