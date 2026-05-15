@@ -1,0 +1,77 @@
+.card {
+  flex: 0 0 140px;
+  width: 140px;
+  min-height: 144px;
+  padding: 12px;
+  border: 2px solid #f9fafa;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.cardSelected {
+  border-color: #1ccafb;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.atIcon {
+  color: #1ccafb;
+  font-family: Moneygraphy, system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.name {
+  margin: 0;
+  color: #33363d;
+  font-family: Moneygraphy, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 130%;
+}
+
+.statusRow img {
+  display: block;
+  height: 14px;
+  width: auto;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuName {
+  color: var(--Primary-Text, #007495);
+  /* Pretendard/Body medium/xsmall */
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%; /* 14.4px */
+}
+
+.menuPrice {
+  color: var(--Primary-Text, #007495);
+
+  /* Pretendard/Body medium/xsmall */
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%; /* 14.4px */
+}

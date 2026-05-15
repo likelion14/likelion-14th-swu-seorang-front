@@ -6,6 +6,7 @@ import BoothLocationInfo from "../../component/BoothLocationInfo";
 import MapBoothMap from "../../component/MapBoothMap";
 import ShuniBoothMap from "../../component/ShuniBoothMap";
 import FleaMarketBoothMap from "../../component/FleaMarketBoothMap";
+import FoodTruckBoothMap from "../../component/FoodTruckBoothMap";
 import type { FestivalDay } from "../../types/booth";
 import styles from "./HomeBooth.module.css";
 
@@ -42,7 +43,7 @@ export default function HomeBooth() {
 
     switch (currentIndex) {
       case 1:
-        return <div className={styles.placeholder}>푸드트럭 컨텐츠</div>;
+        return <FoodTruckBoothMap />;
       case 2:
         return <FleaMarketBoothMap />;
       case 3:
