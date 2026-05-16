@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import StarBlue from "../assets/icon/Sticker/Star-blue-big.svg";
 import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.svg";
 import FoodTruckDetailCard from "./FoodTruckDetailCard";
@@ -10,8 +10,14 @@ import {
 import styles from "./FoodTruckBoothMap.module.css";
 
 export default function FoodTruckBoothMap() {
-  const [selectedMarkerId, setSelectedMarkerId] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const filteredList = useMemo(() => {
+    if (selectedCategory) {
+      return FOOD_TRUCK_LIST.filter((item) => item.name.includes(selectedCategory));
+    }
+    return FOOD_TRUCK_LIST;
+  }, [selectedCategory]);
 
   return (
     <section className={styles.wrapper}>
@@ -48,12 +54,10 @@ export default function FoodTruckBoothMap() {
       <div className={styles.listSection}>
         <h2 className={styles.listTitle}>부스목록</h2>
         <div className={styles.listScroll}>
-          {FOOD_TRUCK_LIST.map((item) => (
+          {filteredList.map((item) => (
             <FoodTruckDetailCard
               key={item.id}
               item={item}
-              selected={selectedMarkerId === item.mapMarkerId}
-              onClick={() => setSelectedMarkerId(item.mapMarkerId)}
             />
           ))}
         </div>

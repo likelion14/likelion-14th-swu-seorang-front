@@ -22,7 +22,7 @@ export default function ShuniBoothDetailCard({
         <div className={styles.statusRow}>
           <img
             src={detail.isOpen ? TagBoothOpen : TagBoothClose}
-            alt={detail.isOpen ? "운영중" : "운영종료"}
+            alt={detail.isOpen ? "운영중" : "운영전"}
           />
         </div>
       </div>

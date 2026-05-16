@@ -24,13 +24,13 @@ export const FLEA_MARKET_ZONES = {
 
 export const FLEA_MARKET_MARKERS: FleaMarketMarker[] = [
   { id: "damgi", labels: ["담기"] },
-  { id: "knit-cafe", labels: ["뜨개", "다방"] },
-  { id: "raven", labels: ["레이븐", "팩토리"] },
-  { id: "lapelle", labels: ["라플", "레르"] },
-  { id: "wish", labels: ["소원", "상점"] },
-  { id: "knit-cat", labels: ["뜨개순", "애옹", "상점"] },
-  { id: "plein", labels: ["플레", "인톤"] },
-  { id: "cherry", labels: ["체리쉬", "미앤유"] },
+  { id: "knit-cafe", labels: ["뜨개다방"] },
+  { id: "raven", labels: ["레이븐팩토리"] },
+  { id: "lapelle", labels: ["라플레르"] },
+  { id: "wish", labels: ["소원상점"] },
+  { id: "knit-cat", labels: ["뜨개순애옹상점"] },
+  { id: "plein", labels: ["플레인톤"] },
+  { id: "cherry", labels: ["체리쉬미앤유"] },
 ];
 
 export const FLEA_MARKET_LIST: FleaMarketListItem[] = [

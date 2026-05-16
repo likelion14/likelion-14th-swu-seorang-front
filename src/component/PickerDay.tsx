@@ -47,7 +47,7 @@ export default function PickerDay({ value, onChange }: PickerDayProps) {
       <div className={styles.dropdownWrap}>
         <button
           type="button"
-          className={styles.trigger}
+          className={`${styles.trigger} ${isOpen ? styles.triggerOpen : ""}`}
           onClick={() => setIsOpen((prev) => !prev)}
           aria-expanded={isOpen}
           aria-haspopup="listbox"

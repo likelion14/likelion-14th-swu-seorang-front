@@ -26,8 +26,7 @@ export default function BoothTab({ currentIndex, onIndexChange }: BoothTabProps)
         justifyContent: "space-between",
         alignItems: "center",
         alignSelf: "stretch",
-        marginTop: "12px",
-        marginBottom: "12px",
+        
       }}
     >
       <button

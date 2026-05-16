@@ -39,8 +39,8 @@ export const SHUNI_BUILDING_ZONES: ShuniBuildingZone[] = [
 ];
 
 export const SHUNI_BOOTH_MARKERS: ShuniBoothMarker[] = [
-  { id: "photo-trailer", labels: ["포토", "트레일러"], left: 16.1, top: 16.4 },
-  { id: "photo-booth", labels: ["포토", "부스"], left: 77, top: 29.1 },
+  { id: "photo-trailer", labels: ["포토트레일러"], left: 16.1, top: 16.4 },
+  { id: "photo-booth", labels: ["포토부스"], left: 77, top: 29.1 },
 ];
 
 export const SHUNI_BOOTH_DETAIL: ShuniBoothDetail = {
