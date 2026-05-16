@@ -1,0 +1,85 @@
+.wrapper {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 337px;/**/
+  padding: 36.703px 11px 12.297px 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  border: 4px dashed var(--Gray-5, #F9FAFA);
+  background: var(--Primary-Alpha-white-50, rgba(255, 255, 255, 0.50));
+}
+
+.boothGrid {
+  display: grid;
+  grid-template-columns: 38px 1fr 38px;
+  gap: 4px;
+  height: 100%;
+}
+
+.sideColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.centerColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 62px;
+  min-width: 0;
+}
+
+.centerTopRow {
+  display: flex;
+  gap: 2px;
+}
+
+.centerBottomRow {
+  display: flex;
+  gap: 2px;
+  align-items: flex-start;
+}
+
+.decorStar {
+  position: absolute;
+  right: 65px;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+}
+
+.listSection {
+  margin-top: 24px;
+}
+
+.listTitle {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #1ccafb;
+  color: #f9fafa;
+  font-family: Moneygraphy, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 130%;
+  margin: 0 0 8px;
+}
+
+.listScroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.listScroll::-webkit-scrollbar {
+  display: none;
+}

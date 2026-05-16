@@ -1,0 +1,263 @@
+p {
+  margin: 0;
+}
+
+.page {
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 40px;
+  box-sizing: border-box;
+}
+
+/* ===== Upload Header ===== */
+.uploadHeader {
+  width: 100%;
+  max-width: 343px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 0;
+  box-sizing: content-box;
+}
+
+.backBtn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.chevron {
+  width: 20px;
+  height: 20px;
+}
+
+.headerTitle {
+  font-size: 16px;
+  color: #f9fafa;
+  font-family: system-ui;
+  font-weight: 600;
+}
+
+.headerRight {
+  width: 24px;
+}
+
+/* ===== Inner container ===== */
+.inner {
+  width: 100%;
+  max-width: 343px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+/* ===== Photo Uploader ===== */
+.uploaderWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.fileInput {
+  display: none;
+}
+
+.photoPlaceholder {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.uploaderImg{
+  width: 225px;
+  height: 300px;
+  display: block;
+}
+
+.photoPreview {
+  width: 225px;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.previewImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photoOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trashBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e8faff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Tag Section ===== */
+.tagSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tagLabel {
+  font-size: 14px;
+  color: #007495;
+  font-family: system-ui;
+  font-weight: 600;
+}
+
+.tagInputBox {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 12px;
+  border: 2px solid #f9fafa;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 8px 12px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tagInputBoxError {
+  border-color: #bf0d28;
+}
+
+.tagInputInner {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.tagRawInput {
+  flex: 1;
+  min-width: 80px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-family: system-ui;
+  color: #33363d;
+  outline: none;
+}
+
+.tagRawInput::placeholder {
+  color: #cdd1d5;
+}
+
+.tagChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #e8faff;
+  border-radius: 12px;
+  padding: 2px 6px 2px 8px;
+}
+
+.tagChipText {
+  font-size: 14px;
+  color: #268097;
+  font-family: system-ui;
+}
+
+.tagChipDelete {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1ccafb;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.counter {
+  font-size: 14px;
+  color: #cdd1d5;
+  font-family: system-ui;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.counterActive {
+  color: #1ccafb;
+}
+
+.counterLimit {
+  color: #cdd1d5;
+}
+
+.tagHint {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tagHintText {
+  font-size: 12px;
+  color: #6d7882;
+  font-family: system-ui;
+}
+
+.tagHintTextError {
+  font-size: 12px;
+  color: #bf0d28;
+  font-family: system-ui;
+}
+
+/* ===== Submit Button ===== */
+.submitBtn {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+  background:transparent;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.submitBtn:disabled {
+  cursor: not-allowed;
+}
+
+.submitBtn img {
+  width: 100%;
+  max-width: 343px;
+  height: auto;
+}

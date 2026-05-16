@@ -1,0 +1,272 @@
+p {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px 16px 0;
+  box-sizing: border-box;
+}
+
+.chevron {
+  width: 26px;
+  height: 26px;
+  position: relative;
+  z-index: 10;
+}
+
+.backButton {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 1);
+  -webkit-text-stroke: 5px rgba(7, 188, 237, 1);
+  line-height: 1;
+  paint-order: stroke fill;
+  margin-top: 35px;
+  margin-bottom: 30px;
+}
+
+.detail {
+  font-size: 14px;
+  color: #007495;
+  font-family: system-ui;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.label {
+  width: 100%;
+  max-width: 343px;
+  margin: 25px auto 6px;
+  font-size: 14px;
+  color: rgba(0, 116, 149, 1);
+  font-family: system-ui;
+  font-weight: 600;
+}
+
+/* 기본 상태 */
+.dropdownContainer {
+  width: 100%;
+  max-width: 343px;
+  min-height: 48px;
+  border-radius: 12px;
+  border: 2px solid rgba(249, 250, 250, 1);
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0 6px 0 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin: 0 auto;
+}
+
+/* 드롭다운 열린 상태 */
+.dropdownContainerOpen {
+  background: rgba(249, 250, 250, 1);
+  padding-bottom: 8px;
+}
+
+.input {
+  width: 100%;
+  height: 44px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-family: system-ui;
+  color: rgba(51, 54, 61, 1);
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.input::placeholder {
+  color: rgba(205, 209, 213, 1);
+}
+
+/* 드롭다운 열렸을 때만 밑줄 */
+.inputOpen {
+  border-bottom: 1px solid rgba(230, 232, 234, 1);
+}
+
+.dropdown {
+  max-height: 270px;
+  overflow-y: auto;
+}
+
+.majorItem {
+  padding: 12px 0;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: system-ui;
+  color: rgba(51, 54, 61, 1);
+}
+
+.inputContainer {
+  width: 100%;
+  max-width: 343px;
+  height: 48px;
+  border-radius: 12px;
+  border: 2px solid rgba(249, 250, 250, 1);
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0 14px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  margin: 0 auto 1px;
+}
+
+.basicInput {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-family: system-ui;
+  color: rgba(51, 54, 61, 1);
+}
+
+.basicInput:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.basicInput::placeholder {
+  color: rgba(205, 209, 213, 1);
+}
+
+.agreementBox {
+  width: 100%;
+  max-width: 343px;
+  border-radius: 12px;
+  border: 2px solid rgba(249, 250, 250, 1);
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0 14px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.agreementList {
+  margin: 0;
+  padding-left: 14px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.agreementList li {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: system-ui;
+  line-height: 1.6;
+  color: rgba(51, 54, 61, 1);
+}
+
+.bottomCheckWrapper {
+  left: 0;
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.bottomCheck {
+  width: 100%;
+  max-width: 343px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 14px;
+}
+
+.checkIcon {
+  cursor: pointer;
+}
+
+.checkText {
+  font-size: 14px;
+  color: #6D7882;
+  font-family: system-ui;
+}
+
+.submitButton {
+  width: 100%;
+  max-width: 343px;
+  margin: 24px auto 0;
+  padding-bottom: 20px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.submitButton img {
+  width: 343px;
+  max-width: 110%;
+  height: auto;
+}
+
+.submitButton:disabled {
+  cursor: default;
+}
+
+.errorBorder {
+  border: 2px solid #F34962 !important;
+}
+
+.errorRow {
+  width: 100%;
+  max-width: 343px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 6px auto 0;
+  padding-bottom: 5px;
+}
+
+.errorText {
+  font-size: 12px;
+  color: #BF0D28;
+  font-family: system-ui;
+}
+
+.divider {
+  width: 100%;
+  max-width: 343px;
+  margin: 2px auto;
+  display: flex;
+  align-items: center;
+  color: #6D7882;
+  font-size: 12px;
+  font-family: system-ui;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #CDD1D5;
+}
+
+.dividerText {
+  padding: 0 12px;
+}

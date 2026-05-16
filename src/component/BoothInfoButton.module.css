@@ -1,0 +1,60 @@
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 38px;
+  min-height: 44px;
+  padding: 4px 2px;
+  border-radius: 4px;
+  border: none;/*2px solid var(--Gray-20, #E6E8EA);*/
+  background: var(--Gray-5, #F9FAFA);
+  color: #33363d;
+  font-family: Moneygraphy, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 120%;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: -1px 2px 2px 0 rgba(28, 202, 251, 0.05) inset, 0 1px 4px 0 rgba(0, 0, 0, 0.10) inset, 1px -2px 6px 0 rgba(0, 0, 0, 0.10) inset, 1px -2px 6px 0 #FFF1FF inset, -4px 6px 2px 0 #FFF inset;
+}
+
+.btn.tall {
+  min-height: 56px;
+}
+
+.btn.large {
+  width: 56px;
+  min-height: 80px;
+}
+
+.wide {
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+}
+
+.selected {
+  border: none;/*2px solid var(--Secondary-Pink-Variant, #EC5EEE);*/
+  background: var(--Secondary-Pink-Base, #FE96FF);
+  color: #FFF;
+  box-shadow: -1px 1px 2px 0 var(--Secondary-Pink-30, #FE96FF) inset, 0 1px 4px 0 rgba(0, 0, 0, 0.10) inset, 1px -2px 6px 0 var(--Secondary-Pink-40, #FD7AFF) inset, -4px 6px 2px 0 rgba(255, 255, 255, 0.50) inset;
+}
+
+.labelWrap {
+  display: contents;
+}
+
+.label {
+  white-space: pre-line;
+  text-align: center;
+}
+
+.divider {
+  display: block;
+  width: 26px;
+  height: 1px;
+  margin: 2px 0;
+  background: #e6e8ea;
+}
