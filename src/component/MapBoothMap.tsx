@@ -59,11 +59,18 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
     }
 
     const filtered = filterByDay(DEPARTMENT_BOOTH_LIST);
-    return filtered.map((item) => ({
+    const mapped = filtered.map((item) => ({
       ...item,
       checked: checkedBoothIds.has(item.id),
     }));
-  }, [selectedDay, checkedBoothIds, booths, filterByDay]);
+
+    // 선택된 셀이 있으면 해당 셀에 속하는 부스만 필터링
+    if (selectedCellId) {
+      return mapped.filter((item) => item.mapCellId === selectedCellId);
+    }
+
+    return mapped;
+  }, [selectedDay, checkedBoothIds, booths, filterByDay, selectedCellId]);
 
   const handleCellClick = (cellId: string) => {
     setSelectedCellId(cellId);

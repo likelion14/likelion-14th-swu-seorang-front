@@ -14,20 +14,20 @@ import styles from "./HomeBooth.module.css";
 
 export default function HomeBooth() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedDay, setSelectedDay] = useState<FestivalDay>("2025-05-22");
+  const [selectedDay, setSelectedDay] = useState<FestivalDay>("2025-05-20");
   const [booths, setBooths] = useState<VisitedBooth[]>([]);
   const [loading, setLoading] = useState(false);
 
   const getDayNumber = (day: FestivalDay): number => {
     switch (day) {
-      case "2025-05-21":
+      case "2025-05-20":
         return 1;
-      case "2025-05-22":
+      case "2025-05-21":
         return 2;
-      case "2025-05-23":
+      case "2025-05-22":
         return 3;
       default:
-        return 2;
+        return 1;
     }
   };
 

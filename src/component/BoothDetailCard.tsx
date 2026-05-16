@@ -37,7 +37,7 @@ export default function BoothDetailCard({
         <div className={styles.statusRow}>
           <img
             src={item.isOpen ? TagBoothOpen : TagBoothClose}
-            alt={item.isOpen ? "운영중" : "운영종료"}
+            alt={item.isOpen ? "운영중" : "운영전"}
             height={14}
           />
         </div>

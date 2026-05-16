@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import StarBlue from "../assets/icon/Sticker/Star-blue-big.svg";
 import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.svg";
 import BoothInfoButton from "./BoothInfoButton";
@@ -12,6 +12,13 @@ import styles from "./FleaMarketBoothMap.module.css";
 
 export default function FleaMarketBoothMap() {
   const [selectedMarkerId, setSelectedMarkerId] = useState<string | null>(null);
+
+  const filteredList = useMemo(() => {
+    if (selectedMarkerId) {
+      return FLEA_MARKET_LIST.filter((item) => item.mapMarkerId === selectedMarkerId);
+    }
+    return FLEA_MARKET_LIST;
+  }, [selectedMarkerId]);
 
   return (
     <section className={styles.wrapper}>
@@ -47,7 +54,7 @@ export default function FleaMarketBoothMap() {
       <div className={styles.listSection}>
         <h2 className={styles.listTitle}>부스목록</h2>
         <div className={styles.listScroll}>
-          {FLEA_MARKET_LIST.map((item) => (
+          {filteredList.map((item) => (
             <FleaMarketDetailCard
               key={item.id}
               item={item}
