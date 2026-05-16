@@ -191,20 +191,21 @@ export default function Frame() {
   };
 
   return (
-    <div className={styles.container}>
-      <Header />
-      <Tab />
+    <div className={styles.page}>
+      <div className={styles.inner}>
+        <Header />
+        <Tab />
 
-      <img
-        src={BlurFrame}
-        className={styles.backgroundframe}
-      />
+        <img
+          src={BlurFrame}
+          className={styles.backgroundframe}
+        />
 
-      <img
-        src={RefreshButton}
-        className={styles.refreshButton}
-        onClick={handleReset}
-      />
+        <img
+          src={RefreshButton}
+          className={styles.refreshButton}
+          onClick={handleReset}
+        />
 
       {/* 실제 네컷 */}
       <div
@@ -387,6 +388,7 @@ export default function Frame() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

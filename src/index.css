@@ -40,14 +40,15 @@ body {
 
 /* ===== 모바일 화면 최적화 ===== */
 #root {
-  max-width: 400px;    
+  max-width: 400px;
   margin: 0 auto;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
 
   background-image: url('../src/assets/img/seorang_bg.png');
-  background-size: cover;      
-  background-position: center;  
-  background-repeat: no-repeat; 
+  background-size: contain;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

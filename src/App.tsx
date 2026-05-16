@@ -5,11 +5,11 @@ import { saveRecentPage } from "./api/saveRecentPage";
 import HomeBooth from "../src/pages/home/HomeBooth";
 import SignUp from "../src/pages/apply/SignUp";
 import Login from "../src/pages/apply/Login";
-import Performance from "../src/pages/performance/performance";
 import Frame from "../src/pages/frame/Frame";
 import Certificate from "../src/pages/certificate/Certificate";
 import CertificateUpload from "../src/pages/certificate/CertificateUpload";
 import CertificateEdit from "./pages/certificate/CertificateEdit";
+import Performance from "./pages/performance/performance";
 
 const App = () => {
   const location = useLocation();

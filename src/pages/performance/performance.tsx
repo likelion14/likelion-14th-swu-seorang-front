@@ -169,132 +169,134 @@ export default function HomeBooth() {
     };
 
     return (
-        <div className={styles.container}>
-            <Header />
+        <div className={styles.page}>
+            <div className={styles.inner}>
+                <Header />
 
-            <Tab />
+                <Tab />
 
-            {/* 날짜 선택 */}
-            <section className={styles.dateSection}>
-                <button
-                    className={styles.arrowButton}
-                    onClick={handlePrev}
-                >
-                    <img
-                        src={ChevronLeft}
-                        alt="이전 날짜"
-                        className={styles.arrowIcon}
-                    />
-                </button>
+                {/* 날짜 선택 */}
+                <section className={styles.dateSection}>
+                    <button
+                        className={styles.arrowButton}
+                        onClick={handlePrev}
+                    >
+                        <img
+                            src={ChevronLeft}
+                            alt="이전 날짜"
+                            className={styles.arrowIcon}
+                        />
+                    </button>
 
-                <h1 className={styles.dateText}>
-                    {currentData.label}
-                </h1>
+                    <h1 className={styles.dateText}>
+                        {currentData.label}
+                    </h1>
 
-                <button
-                    className={styles.arrowButton}
-                    onClick={handleNext}
-                >
-                    <img
-                        src={ChevronRight}
-                        alt="다음 날짜"
-                        className={styles.arrowIcon}
-                    />
-                </button>
-            </section>
+                    <button
+                        className={styles.arrowButton}
+                        onClick={handleNext}
+                    >
+                        <img
+                            src={ChevronRight}
+                            alt="다음 날짜"
+                            className={styles.arrowIcon}
+                        />
+                    </button>
+                </section>
 
-            {/* 아티스트 카드 */}
-            <section className={styles.artistCard}>
-                <div
-                    className={styles.artistBadge}
-                    onClick={() => {
-                        if (showMusic) {
-                            setShowMusic(false);
-                        }
-                    }}
-                >
-                    <img
-                        src={
-                            showMusic
-                                ? DetailBadge
-                                : currentArtist.badge
-                        }
-                        alt="badge"
-                        className={styles.badgeSvg}
-                    />
-                </div>
-
-                <img
-                    src={StarSticker}
-                    alt="star"
-                    className={
-                        showMusic
-                            ? styles.starIconMusic
-                            : styles.starIcon
-                    }
-                />
-
-                {showMusic ? (
-                    <div className={styles.musicWrapper}>
-                        <iframe
-                            allow="autoplay *; encrypted-media *;"
-                            height="450"
-                            style={{
-                                width: "100%",
-                                height: "790px",
-                                border: "none",
-                                borderRadius: "12px",
-                                zoom: "0.53",
-                            }}
-                            src={currentArtist.musicUrl}
-                            className={styles.appleMusic}
+                {/* 아티스트 카드 */}
+                <section className={styles.artistCard}>
+                    <div
+                        className={styles.artistBadge}
+                        onClick={() => {
+                            if (showMusic) {
+                                setShowMusic(false);
+                            }
+                        }}
+                    >
+                        <img
+                            src={
+                                showMusic
+                                    ? DetailBadge
+                                    : currentArtist.badge
+                            }
+                            alt="badge"
+                            className={styles.badgeSvg}
                         />
                     </div>
-                ) : (
+
                     <img
-                        src={currentArtist.image}
-                        alt={currentArtist.name}
-                        className={styles.artistBg}
+                        src={StarSticker}
+                        alt="star"
+                        className={
+                            showMusic
+                                ? styles.starIconMusic
+                                : styles.starIcon
+                        }
                     />
-                )}
 
-                {!showMusic && (
-                    <button
-                        className={styles.previewBtn}
-                        onClick={() => setShowMusic(true)}
-                    >
-                        <img src={PreviewBtn} alt="대표곡 미리듣기" />
-                    </button>
-                )}
-            </section>
-
-            {/* 동아리 공연 */}
-            <div className={styles.sectionLabel}>
-                동아리 공연
-            </div>
-
-            {/* 공연 리스트 */}
-            <section className={styles.performanceList}>
-                {currentData.performances.map((p) => (
-                    <article key={p.id} className={styles.card}>
-                        <img
-                            src={p.image}
-                            alt={p.team}
-                            className={styles.artistImage}
-                        />
-
-                        <div className={styles.textWrapper}>
-                            <h2 className={styles.teamName}>
-                                {p.team}
-                            </h2>
-
-                            <p className={styles.time}>
-                                {p.time}
-                            </p>
+                    {showMusic ? (
+                        <div className={styles.musicWrapper}>
+                            <iframe
+                                allow="autoplay *; encrypted-media *;"
+                                height="450"
+                                style={{
+                                    width: "100%",
+                                    height: "790px",
+                                    border: "none",
+                                    borderRadius: "12px",
+                                    zoom: "0.53",
+                                }}
+                                src={currentArtist.musicUrl}
+                                className={styles.appleMusic}
+                            />
                         </div>
-                    </article>
-                ))}
-            </section>
+                    ) : (
+                        <img
+                            src={currentArtist.image}
+                            alt={currentArtist.name}
+                            className={styles.artistBg}
+                        />
+                    )}
+
+                    {!showMusic && (
+                        <button
+                            className={styles.previewBtn}
+                            onClick={() => setShowMusic(true)}
+                        >
+                            <img src={PreviewBtn} alt="대표곡 미리듣기" />
+                        </button>
+                    )}
+                </section>
+
+                {/* 동아리 공연 */}
+                <div className={styles.sectionLabel}>
+                    동아리 공연
+                </div>
+
+                {/* 공연 리스트 */}
+                <section className={styles.performanceList}>
+                    {currentData.performances.map((p) => (
+                        <article key={p.id} className={styles.card}>
+                            <img
+                                src={p.image}
+                                alt={p.team}
+                                className={styles.artistImage}
+                            />
+
+                            <div className={styles.textWrapper}>
+                                <h2 className={styles.teamName}>
+                                    {p.team}
+                                </h2>
+
+                                <p className={styles.time}>
+                                    {p.time}
+                                </p>
+                            </div>
+                        </article>
+                    ))}
+                </section>
+            </div>
         </div>
     );
 }
