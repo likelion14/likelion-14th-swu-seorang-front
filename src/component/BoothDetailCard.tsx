@@ -10,6 +10,7 @@ interface BoothDetailCardProps {
   selected?: boolean;
   onClick?: () => void;
   onCheck?: () => void;
+  checking?: boolean;
 }
 
 export default function BoothDetailCard({
@@ -17,6 +18,7 @@ export default function BoothDetailCard({
   selected = false,
   onClick,
   onCheck,
+  checking = false,
 }: BoothDetailCardProps) {
   return (
     <article
@@ -46,10 +48,11 @@ export default function BoothDetailCard({
         className={`${styles.checkBtn} ${item.checked ? styles.checkBtnDone : ""}`}
         onClick={(e) => {
           e.stopPropagation();
-          if (!item.checked) {
+          if (!item.checked && !checking) {
             onCheck?.();
           }
         }}
+        disabled={checking || item.checked}
       >
         <img
           src={item.checked ? StarPinkCheck : BoothCheck}
