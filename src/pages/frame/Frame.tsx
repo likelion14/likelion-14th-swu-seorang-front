@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
-
+import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { checkAuth } from "../../api/checkAuth";
 import Header from "../../component/header";
 import Tab from "../../component/Tab";
 
@@ -14,7 +15,10 @@ import DeleteIcon from "../../assets/icon/Trash-icon.svg";
 import DownloadButton from "../../assets/icon/Btn/Frame-Download.svg";
 import RefreshButton from "../../assets/icon/Btn/Refresh-Button.svg";
 import FrameEvent from "../../assets/icon/Frame-event.svg";
+import LoginModal from "../../component/Modal";
 
+import CancelButton from "../../assets/icon/Btn/Modal-Back.svg";
+import LogoutButton from "../../assets/icon/Btn/Modal-Login.svg";
 
 import html2canvas from "html2canvas";
 
@@ -39,6 +43,10 @@ export default function Frame() {
   // 바텀시트 상태
   const [isBottomSheetOpen, setIsBottomSheetOpen] =
     useState(false);
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const navigate = useNavigate();
 
   // 완성 이미지
   const [finalImage, setFinalImage] =
@@ -190,6 +198,18 @@ export default function Frame() {
     }
   };
 
+  useEffect(() => {
+    const authCheck = async () => {
+      const isLoggedIn = await checkAuth();
+
+      if (!isLoggedIn) {
+        setShowLoginModal(true);
+      }
+    };
+
+    authCheck();
+  }, []);
+
   return (
     <div className={styles.page}>
       <div className={styles.inner}>
@@ -207,188 +227,209 @@ export default function Frame() {
           onClick={handleReset}
         />
 
-      {/* 실제 네컷 */}
-      <div
-        className={styles.frameWrapper}
-        ref={frameRef}
-      >
-        {[1, 2, 3, 4].map((slot, index) => (
-          <div
-            key={slot}
-            className={styles[`slot${slot}`]}
-            onClick={() => {
-              // 이미지 없으면 업로드
-              if (!images[index]) {
-                handleClick(index);
-                return;
-              }
+        {/* 실제 네컷 */}
+        <div
+          className={styles.frameWrapper}
+          ref={frameRef}
+        >
+          {[1, 2, 3, 4].map((slot, index) => (
+            <div
+              key={slot}
+              className={styles[`slot${slot}`]}
+              onClick={() => {
+                // 이미지 없으면 업로드
+                if (!images[index]) {
+                  handleClick(index);
+                  return;
+                }
 
-              // 이미 선택된 상태면 해제
-              if (
-                selectedSlots.includes(index)
-              ) {
-                setSelectedSlots(
-                  selectedSlots.filter(
-                    (i) => i !== index
-                  )
-                );
-              } else {
-                // 선택 추가
-                setSelectedSlots([
-                  ...selectedSlots,
-                  index,
-                ]);
-              }
-            }}
-          >
-            {images[index] ? (
-              <>
-                {/* zoom 영역 */}
-                <div
-                  className={
-                    styles.transformContainer
-                  }
-                >
-                  <TransformWrapper
-                    initialScale={1}
-                    minScale={1}
-                    maxScale={4}
-                    centerOnInit
-                    limitToBounds={false}
-                    doubleClick={{
-                      disabled: true,
-                    }}
-                    pinch={{ step: 5 }}
+                // 이미 선택된 상태면 해제
+                if (
+                  selectedSlots.includes(index)
+                ) {
+                  setSelectedSlots(
+                    selectedSlots.filter(
+                      (i) => i !== index
+                    )
+                  );
+                } else {
+                  // 선택 추가
+                  setSelectedSlots([
+                    ...selectedSlots,
+                    index,
+                  ]);
+                }
+              }}
+            >
+              {images[index] ? (
+                <>
+                  {/* zoom 영역 */}
+                  <div
+                    className={
+                      styles.transformContainer
+                    }
                   >
-                    <TransformComponent
-                      wrapperStyle={{
-                        width: "100%",
-                        height: "100%",
+                    <TransformWrapper
+                      initialScale={1}
+                      minScale={1}
+                      maxScale={4}
+                      centerOnInit
+                      limitToBounds={false}
+                      doubleClick={{
+                        disabled: true,
                       }}
-
+                      pinch={{ step: 5 }}
                     >
-                      <img
-                        src={images[index]}
-                        className={
-                          styles.uploadedImage
-                        }
-                      />
-                    </TransformComponent>
-                  </TransformWrapper>
-                </div>
+                      <TransformComponent
+                        wrapperStyle={{
+                          width: "100%",
+                          height: "100%",
+                        }}
 
-                {/* overlay */}
-                {selectedSlots.includes(
-                  index
-                ) && (
-                    <div
-                      className={styles.slotOverlay}
-                      onClick={(e) => {
-                        e.stopPropagation();
+                      >
+                        <img
+                          src={images[index]}
+                          className={
+                            styles.uploadedImage
+                          }
+                        />
+                      </TransformComponent>
+                    </TransformWrapper>
+                  </div>
 
-                        setSelectedSlots(
-                          selectedSlots.filter(
-                            (i) => i !== index
-                          )
-                        );
-                      }}
-                    >
-                      <img
-                        src={DeleteIcon}
-                        className={
-                          styles.deleteIcon
-                        }
+                  {/* overlay */}
+                  {selectedSlots.includes(
+                    index
+                  ) && (
+                      <div
+                        className={styles.slotOverlay}
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleDelete(index);
+
+                          setSelectedSlots(
+                            selectedSlots.filter(
+                              (i) => i !== index
+                            )
+                          );
                         }}
-                      />
-                    </div>
-                  )}
-              </>
-            ) : (
-              <div
-                className={styles.placeholder}
-              >
-                <img
-                  src={Placeholder}
-                  className={
-                    styles.placeholderIcon
-                  }
-                />
-                <p>사진 추가</p>
-              </div>
-            )}
+                      >
+                        <img
+                          src={DeleteIcon}
+                          className={
+                            styles.deleteIcon
+                          }
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(index);
+                          }}
+                        />
+                      </div>
+                    )}
+                </>
+              ) : (
+                <div
+                  className={styles.placeholder}
+                >
+                  <img
+                    src={Placeholder}
+                    className={
+                      styles.placeholderIcon
+                    }
+                  />
+                  <p>사진 추가</p>
+                </div>
+              )}
 
-            {/* 숨겨진 input */}
-            <input
-              ref={fileInputRefs[index]}
-              type="file"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={(e) =>
-                handleChange(e, index)
-              }
-            />
-          </div>
-        ))}
+              {/* 숨겨진 input */}
+              <input
+                ref={fileInputRefs[index]}
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={(e) =>
+                  handleChange(e, index)
+                }
+              />
+            </div>
+          ))}
 
-        {/* 프레임 */}
+          {/* 프레임 */}
+          <img
+            src={FrameImage}
+            className={styles.frameImage}
+          />
+        </div>
+
+        {/* 하단 버튼 */}
         <img
-          src={FrameImage}
-          className={styles.frameImage}
+          src={EditButton}
+          className={styles.bottomButton}
+          onClick={handleCreateFrame}
         />
-      </div>
 
-      {/* 하단 버튼 */}
-      <img
-        src={EditButton}
-        className={styles.bottomButton}
-        onClick={handleCreateFrame}
-      />
-
-      {/* 바텀시트 */}
-      {isBottomSheetOpen && (
-        <div
-          className={
-            styles.bottomSheetOverlay
-          }
-          onClick={() =>
-            setIsBottomSheetOpen(false)
-          }
-        >
+        {/* 바텀시트 */}
+        {isBottomSheetOpen && (
           <div
-            className={styles.bottomSheet}
-            onClick={(e) =>
-              e.stopPropagation()
+            className={
+              styles.bottomSheetOverlay
+            }
+            onClick={() =>
+              setIsBottomSheetOpen(false)
             }
           >
-            <p className={styles.sheetText}>
-              프레임 미리보기
-            </p>
-
-            {finalImage && (
-              <img
-                src={finalImage}
-                className={styles.resultImage}
-              />
-            )}
-            <img
-              src={FrameEvent}
-              className={styles.frameEvent}
-            />
-
-            <img
-              src={DownloadButton}
-              className={
-                styles.downloadButton
+            <div
+              className={styles.bottomSheet}
+              onClick={(e) =>
+                e.stopPropagation()
               }
-              onClick={handleDownload}
-            />
+            >
+              <p className={styles.sheetText}>
+                프레임 미리보기
+              </p>
+
+              {finalImage && (
+                <img
+                  src={finalImage}
+                  className={styles.resultImage}
+                />
+              )}
+              <img
+                src={FrameEvent}
+                className={styles.frameEvent}
+              />
+
+              <img
+                src={DownloadButton}
+                className={
+                  styles.downloadButton
+                }
+                onClick={handleDownload}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+        {showLoginModal && (
+          <LoginModal
+            type="로그인 안내"
+            title="로그인이 필요한 서비스 입니다."
+            description="로그인을 원하지 않는 경우 '돌아가기' 버튼을 눌러주세요." 
+
+            cancelButtonImage={CancelButton}
+            confirmButtonImage={LogoutButton}
+
+            onCancel={() => {
+              setShowLoginModal(false);
+              navigate(-1);
+            }}
+
+            onConfirm={() => {
+              setShowLoginModal(false);
+              window.location.href = "/login";
+            }}
+          />
+        )}
       </div>
     </div>
+
   );
 }
