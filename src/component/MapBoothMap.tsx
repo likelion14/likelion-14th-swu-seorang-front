@@ -11,14 +11,17 @@ import {
   RIGHT_COLUMN,
 } from "../data/departmentBoothLayout";
 import type { FestivalDay } from "../types/booth";
+import type { Booth } from "../api/getBooths";
 import styles from "./MapBoothMap.module.css";
 
 interface MapBoothMapProps {
   selectedDay: FestivalDay;
   onDayChange: (day: FestivalDay) => void;
+  booths?: Booth[];
+  loading?: boolean;
 }
 
-export default function MapBoothMap({ selectedDay, onDayChange }: MapBoothMapProps) {
+export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loading = false }: MapBoothMapProps) {
   const [selectedCellId, setSelectedCellId] = useState<string | null>(null);
   const [checkedBoothIds, setCheckedBoothIds] = useState<Set<string>>(new Set());
 
@@ -30,12 +33,23 @@ export default function MapBoothMap({ selectedDay, onDayChange }: MapBoothMapPro
   const centerBottom = useMemo(() => filterByDay(CENTER_BOTTOM_ROW), [selectedDay]);
   const rightColumn = useMemo(() => filterByDay(RIGHT_COLUMN), [selectedDay]);
   const boothList = useMemo(() => {
+    if (booths.length > 0) {
+      return booths.map((booth) => ({
+        id: `api-${booth.id}`,
+        department: booth.name,
+        mapCellId: "",
+        isOpen: booth.dayOpen,
+        days: [selectedDay],
+        checked: checkedBoothIds.has(`api-${booth.id}`),
+      }));
+    }
+
     const filtered = filterByDay(DEPARTMENT_BOOTH_LIST);
     return filtered.map((item) => ({
       ...item,
       checked: checkedBoothIds.has(item.id),
     }));
-  }, [selectedDay, checkedBoothIds]);
+  }, [selectedDay, checkedBoothIds, booths]);
 
   const handleCellClick = (cellId: string) => {
     setSelectedCellId(cellId);
@@ -43,6 +57,12 @@ export default function MapBoothMap({ selectedDay, onDayChange }: MapBoothMapPro
 
   const handleCheck = (boothId: string) => {
     setCheckedBoothIds((prev) => new Set(prev).add(boothId));
+  };
+
+  const handleBoothClick = (item: any) => {
+    if (item.mapCellId) {
+      setSelectedCellId(item.mapCellId);
+    }
   };
 
   return (
@@ -106,17 +126,21 @@ export default function MapBoothMap({ selectedDay, onDayChange }: MapBoothMapPro
 
       <div className={styles.listSection}>
         <h2 className={styles.listTitle}>부스목록</h2>
-        <div className={styles.listScroll}>
-          {boothList.map((item) => (
-            <BoothDetailCard
-              key={item.id}
-              item={item}
-              selected={selectedCellId === item.mapCellId}
-              onClick={() => setSelectedCellId(item.mapCellId)}
-              onCheck={() => handleCheck(item.id)}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <div className={styles.listScroll}>로딩 중...</div>
+        ) : (
+          <div className={styles.listScroll}>
+            {boothList.map((item) => (
+              <BoothDetailCard
+                key={item.id}
+                item={item}
+                selected={selectedCellId === item.mapCellId}
+                onClick={() => handleBoothClick(item)}
+                onCheck={() => handleCheck(item.id)}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
