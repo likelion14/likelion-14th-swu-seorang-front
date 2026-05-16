@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../component/header";
 import Tab from "../../component/Tab";
 import BoothTab from "../../component/BoothTab";
@@ -8,11 +8,44 @@ import ShuniBoothMap from "../../component/ShuniBoothMap";
 import FleaMarketBoothMap from "../../component/FleaMarketBoothMap";
 import FoodTruckBoothMap from "../../component/FoodTruckBoothMap";
 import type { FestivalDay } from "../../types/booth";
+import { getBooths, type Booth } from "../../api/getBooths";
 import styles from "./HomeBooth.module.css";
 
 export default function HomeBooth() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedDay, setSelectedDay] = useState<FestivalDay>("2025-05-22");
+  const [booths, setBooths] = useState<Booth[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const getDayNumber = (day: FestivalDay): number => {
+    switch (day) {
+      case "2025-05-21":
+        return 1;
+      case "2025-05-22":
+        return 2;
+      case "2025-05-23":
+        return 3;
+      default:
+        return 2;
+    }
+  };
+
+  useEffect(() => {
+    const fetchBooths = async () => {
+      setLoading(true);
+      try {
+        const dayNumber = getDayNumber(selectedDay);
+        const data = await getBooths(dayNumber);
+        setBooths(data);
+      } catch (error) {
+        console.error("Failed to fetch booths:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBooths();
+  }, [selectedDay]);
 
   const getLocationText = () => {
     switch (currentIndex) {
@@ -37,6 +70,8 @@ export default function HomeBooth() {
         <MapBoothMap
           selectedDay={selectedDay}
           onDayChange={setSelectedDay}
+          booths={booths}
+          loading={loading}
         />
       );
     }
