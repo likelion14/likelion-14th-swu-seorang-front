@@ -12,6 +12,7 @@ import {
 } from "../data/departmentBoothLayout";
 import type { FestivalDay } from "../types/booth";
 import type { Booth } from "../api/getBooths";
+import { checkVisit } from "../api/checkVisit";
 import styles from "./MapBoothMap.module.css";
 
 interface MapBoothMapProps {
@@ -24,6 +25,7 @@ interface MapBoothMapProps {
 export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loading = false }: MapBoothMapProps) {
   const [selectedCellId, setSelectedCellId] = useState<string | null>(null);
   const [checkedBoothIds, setCheckedBoothIds] = useState<Set<string>>(new Set());
+  const [checkingId, setCheckingId] = useState<string | null>(null);
 
   const filterByDay = <T extends { days: FestivalDay[] }>(items: T[]) =>
     items.filter((item) => item.days.includes(selectedDay));
@@ -55,8 +57,33 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
     setSelectedCellId(cellId);
   };
 
-  const handleCheck = (boothId: string) => {
-    setCheckedBoothIds((prev) => new Set(prev).add(boothId));
+  const handleCheck = async (boothId: string) => {
+    if (checkingId === boothId) return;
+
+    // API 호출이 필요한 부스인지 확인
+    const isApiBooth = boothId.startsWith("api-");
+
+    if (isApiBooth) {
+      setCheckingId(boothId);
+
+      try {
+        // boothId에서 숫자 부분만 추출 (예: "api-1" -> 1)
+        const numericId = boothId.replace("api-", "");
+
+        await checkVisit(parseInt(numericId, 10));
+
+        // 방문 완료된 부스 ID 목록에 추가
+        setCheckedBoothIds((prev) => new Set(prev).add(boothId));
+      } catch (error) {
+        console.error("방문 체크 실패:", error);
+        alert(error instanceof Error ? error.message : "방문 체크에 실패했습니다.");
+      } finally {
+        setCheckingId(null);
+      }
+    } else {
+      // 정적(로컬) 데이터인 경우, 서버 요청 없이 로컬 상태만 바로 업데이트
+      setCheckedBoothIds((prev) => new Set(prev).add(boothId));
+    }
   };
 
   const handleBoothClick = (item: any) => {
@@ -137,6 +164,7 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
                 selected={selectedCellId === item.mapCellId}
                 onClick={() => handleBoothClick(item)}
                 onCheck={() => handleCheck(item.id)}
+                checking={checkingId === item.id}
               />
             ))}
           </div>
