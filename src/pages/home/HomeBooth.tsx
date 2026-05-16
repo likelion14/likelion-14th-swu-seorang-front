@@ -8,13 +8,14 @@ import ShuniBoothMap from "../../component/ShuniBoothMap";
 import FleaMarketBoothMap from "../../component/FleaMarketBoothMap";
 import FoodTruckBoothMap from "../../component/FoodTruckBoothMap";
 import type { FestivalDay } from "../../types/booth";
-import { getBooths, type Booth } from "../../api/getBooths";
+import { getBooths } from "../../api/getBooths";
+import { getVisitedBooths, type VisitedBooth } from "../../api/getVisitedBooths";
 import styles from "./HomeBooth.module.css";
 
 export default function HomeBooth() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedDay, setSelectedDay] = useState<FestivalDay>("2025-05-22");
-  const [booths, setBooths] = useState<Booth[]>([]);
+  const [booths, setBooths] = useState<VisitedBooth[]>([]);
   const [loading, setLoading] = useState(false);
 
   const getDayNumber = (day: FestivalDay): number => {
@@ -35,10 +36,35 @@ export default function HomeBooth() {
       setLoading(true);
       try {
         const dayNumber = getDayNumber(selectedDay);
-        const data = await getBooths(dayNumber);
-        setBooths(data);
+        const accessToken = localStorage.getItem("accessToken");
+
+        if (accessToken) {
+          // 로그인 상태: 방문여부 포함 부스 정보 조회
+          const data = await getVisitedBooths(dayNumber);
+          setBooths(data);
+        } else {
+          // 비로그인 상태: 기본 부스 정보 조회 (visited 필드 추가)
+          const data = await getBooths(dayNumber);
+          const dataWithVisited: VisitedBooth[] = data.map((booth) => ({
+            ...booth,
+            visited: false,
+          }));
+          setBooths(dataWithVisited);
+        }
       } catch (error) {
         console.error("Failed to fetch booths:", error);
+        // 로그인 상태에서 API 실패 시 기본 API로 fallback
+        try {
+          const dayNumber = getDayNumber(selectedDay);
+          const data = await getBooths(dayNumber);
+          const dataWithVisited: VisitedBooth[] = data.map((booth) => ({
+            ...booth,
+            visited: false,
+          }));
+          setBooths(dataWithVisited);
+        } catch (fallbackError) {
+          console.error("Fallback fetch also failed:", fallbackError);
+        }
       } finally {
         setLoading(false);
       }

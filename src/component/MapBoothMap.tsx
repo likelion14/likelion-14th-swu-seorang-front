@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.svg";
 import BoothInfoButton from "./BoothInfoButton";
 import BoothDetailCard from "./BoothDetailCard";
@@ -11,14 +11,14 @@ import {
   RIGHT_COLUMN,
 } from "../data/departmentBoothLayout";
 import type { FestivalDay } from "../types/booth";
-import type { Booth } from "../api/getBooths";
+import type { VisitedBooth } from "../api/getVisitedBooths";
 import { checkVisit } from "../api/checkVisit";
 import styles from "./MapBoothMap.module.css";
 
 interface MapBoothMapProps {
   selectedDay: FestivalDay;
   onDayChange: (day: FestivalDay) => void;
-  booths?: Booth[];
+  booths?: VisitedBooth[];
   loading?: boolean;
 }
 
@@ -26,6 +26,18 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
   const [selectedCellId, setSelectedCellId] = useState<string | null>(null);
   const [checkedBoothIds, setCheckedBoothIds] = useState<Set<string>>(new Set());
   const [checkingId, setCheckingId] = useState<string | null>(null);
+
+  // API에서 받은 방문 여부로 체크 상태 초기화
+  useEffect(() => {
+    if (booths.length > 0) {
+      const visitedIds = new Set(
+        booths
+          .filter((booth) => booth.visited)
+          .map((booth) => `api-${booth.id}`)
+      );
+      setCheckedBoothIds(visitedIds);
+    }
+  }, [booths]);
 
   const filterByDay = <T extends { days: FestivalDay[] }>(items: T[]) =>
     items.filter((item) => item.days.includes(selectedDay));
@@ -51,7 +63,7 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
       ...item,
       checked: checkedBoothIds.has(item.id),
     }));
-  }, [selectedDay, checkedBoothIds, booths]);
+  }, [selectedDay, checkedBoothIds, booths, filterByDay]);
 
   const handleCellClick = (cellId: string) => {
     setSelectedCellId(cellId);
