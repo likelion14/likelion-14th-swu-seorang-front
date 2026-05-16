@@ -55,15 +55,17 @@ export default function HomeBooth() {
 
   return (
     <div className={styles.page}>
-      <Header />
+      <div className={styles.inner}>
+        <Header />
 
-      <Tab />
+        <Tab />
 
-      <BoothTab currentIndex={currentIndex} onIndexChange={setCurrentIndex} />
+        <BoothTab currentIndex={currentIndex} onIndexChange={setCurrentIndex} />
 
-      <BoothLocationInfo locationText={locationText} />
+        <BoothLocationInfo locationText={locationText} />
 
-      {renderContent()}
+        {renderContent()}
+      </div>
     </div>
   );
 }
