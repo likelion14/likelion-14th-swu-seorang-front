@@ -11,7 +11,7 @@ import ChoiYuriImg from "../../assets/icon/performance/Artist1.svg";
 import KiirasImg from "../../assets/icon/performance/Artist2.svg";
 import OhmygirlImg from "../../assets/icon/performance/Artist3.svg";
 import sorimadang from "../../assets/icon/performance/sorimadang.svg";
-import sel from "../../assets/icon/performance/sel.svg";
+import sel from "../../assets/icon/performance/SEL.svg";
 import hyeyumies from "../../assets/icon/performance/hyeyumies.svg";
 import boltfromtheblue from "../../assets/icon/performance/boltfromtheblue.svg";
 import SAKE from "../../assets/icon/performance/SAKE.svg";
