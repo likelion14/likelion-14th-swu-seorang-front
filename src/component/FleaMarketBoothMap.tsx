@@ -1,29 +1,44 @@
 import { useState, useMemo } from "react";
-import StarBlue from "../assets/icon/Sticker/Star-blue-big.svg";
 import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.png";
 import BoothInfoButton from "./BoothInfoButton";
 import FleaMarketDetailCard from "./FleaMarketDetailCard";
+import PickerDay from "./PickerDay";
 import {
   FLEA_MARKET_LIST,
   FLEA_MARKET_MARKERS,
   FLEA_MARKET_ZONES,
 } from "../data/fleaMarketBoothData";
+import type { FestivalDay } from "../types/booth";
 import styles from "./FleaMarketBoothMap.module.css";
 
-export default function FleaMarketBoothMap() {
+interface FleaMarketBoothMapProps {
+  selectedDay: FestivalDay;
+  onDayChange: (day: FestivalDay) => void;
+}
+
+export default function FleaMarketBoothMap({ selectedDay, onDayChange }: FleaMarketBoothMapProps) {
   const [selectedMarkerId, setSelectedMarkerId] = useState<string | null>(null);
 
+  const filterByDay = <T extends { days: string[] }>(items: T[]) =>
+    items.filter((item) => item.days.includes(selectedDay));
+
+  const filteredMarkers = useMemo(() => filterByDay(FLEA_MARKET_MARKERS.map((marker) => ({
+    ...marker,
+    days: FLEA_MARKET_LIST.find((item) => item.mapMarkerId === marker.id)?.days || []
+  }))), [selectedDay]);
+
   const filteredList = useMemo(() => {
+    const byDay = filterByDay(FLEA_MARKET_LIST);
     if (selectedMarkerId) {
-      return FLEA_MARKET_LIST.filter((item) => item.mapMarkerId === selectedMarkerId);
+      return byDay.filter((item) => item.mapMarkerId === selectedMarkerId);
     }
-    return FLEA_MARKET_LIST;
-  }, [selectedMarkerId]);
+    return byDay;
+  }, [selectedMarkerId, selectedDay]);
 
   return (
     <section className={styles.wrapper}>
       <div className={styles.mapContainer}>
-        <img src={StarBlue} alt="" className={styles.decorStarBlue} />
+        <PickerDay value={selectedDay} onChange={onDayChange} />
 
         <div className={styles.mapLayout}>
           <div className={styles.areaZone}>
@@ -31,7 +46,7 @@ export default function FleaMarketBoothMap() {
           </div>
 
           <div className={styles.boothRow}>
-            {FLEA_MARKET_MARKERS.map((marker) => (
+            {filteredMarkers.map((marker) => (
               <div key={marker.id} className={styles.boothCell}>
                 <BoothInfoButton
                   labels={marker.labels}
