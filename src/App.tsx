@@ -23,18 +23,17 @@ const App = () => {
 
       <Routes>
         {/* 홈 */}
-        <Route path="/" element={<HomeBooth />} />
+          <Route path="/" element={<HomeBooth />} />
 
-        <Route path="signup" element={<SignUp />} />
-        <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="login" element={<Login />} />
 
-        <Route path="frame" element={<Frame />} />
-        <Route path="performance" element={<Performance />} />
+          <Route path="frame" element={<Frame />} />
+          <Route path="performance" element={<Performance />} />
 
-        <Route path="certificate" element={<Certificate />} />
-        <Route path="certificate/upload" element={<CertificateUpload />} />
-        <Route path="certificate/edit/:id" element={<CertificateEdit />} />
-
+          <Route path="certificate" element={<Certificate />} />
+          <Route path="certificate/upload" element={<CertificateUpload />} />
+          <Route path="certificate/edit/:id" element={<CertificateEdit />} />
       </Routes>
     </>
   );

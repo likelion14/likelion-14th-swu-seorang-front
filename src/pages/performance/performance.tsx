@@ -3,14 +3,21 @@ import Header from "../../component/header";
 import Tab from "../../component/Tab";
 import ChevronLeft from "../../assets/icon/Btn/Chevron-Left.svg";
 import ChevronRight from "../../assets/icon/Btn/Chevron-Right.svg";
-import ChoiYuriBadge from "../../assets/icon/performance/Artist-1.svg";
-import KiirasBadge from "../../assets/icon/performance/Artist-2.svg";
-import OhmygirlBadge from "../../assets/icon/performance/Artist-2.svg";
-import StarSticker from "../../assets/icon/Sticker/Star-yellow-medium.svg";
-import ChoiYuriImg from "../../assets/img/Artist1.png";
+import ChoiYuriBadge from "../../assets/icon/performance/Artist-1.png";
+import KiirasBadge from "../../assets/icon/performance/Artist-2.png";
+import OhmygirlBadge from "../../assets/icon/performance/Artist-3.png";
+import StarSticker from "../../assets/icon/Sticker/Star-yellow-medium.png";
+import ChoiYuriImg from "../../assets/icon/performance/Artist1.svg";
+import KiirasImg from "../../assets/icon/performance/Artist2.svg";
+import OhmygirlImg from "../../assets/icon/performance/Artist3.svg";
 import sorimadang from "../../assets/icon/performance/sorimadang.svg";
-import PreviewBtn from "../../assets/icon/Btn/Artist-Song.svg";
-import DetailBadge from "../../assets/icon/Btn/Artist-Info.svg";
+import sel from "../../assets/icon/performance/SEL.svg";
+import hyeyumies from "../../assets/icon/performance/hyeyumies.svg";
+import boltfromtheblue from "../../assets/icon/performance/boltfromtheblue.svg";
+import SAKE from "../../assets/icon/performance/SAKE.svg";
+import tipssy from "../../assets/icon/performance/tipssy.svg";
+import PreviewBtn from "../../assets/icon/Btn/Artist-song.png";
+import DetailBadge from "../../assets/icon/Btn/Artist-Info.png";
 
 import styles from "./performance.module.css";
 
@@ -31,7 +38,7 @@ const performancePages = [
             {
                 id: 2,
                 name: "키라스",
-                image: ChoiYuriImg,
+                image: KiirasImg,
                 badge: KiirasBadge,
                 musicUrl:
                     "https://embed.music.apple.com/kr/album/1895919268",
@@ -49,13 +56,13 @@ const performancePages = [
                 id: 2,
                 team: "S.E.L",
                 time: "19:20 - 19:50",
-                image: sorimadang,
+                image: sel,
             },
             {
                 id: 3,
                 team: "한혜윰",
                 time: "19:20 - 19:50",
-                image: sorimadang,
+                image: hyeyumies,
             },
         ],
     },
@@ -68,7 +75,7 @@ const performancePages = [
             {
                 id: 1,
                 name: "오마이걸",
-                image: ChoiYuriImg,
+                image: OhmygirlImg,
                 badge: OhmygirlBadge,
                 musicUrl:
                     "https://embed.music.apple.com/kr/album/1738879486",
@@ -80,19 +87,19 @@ const performancePages = [
                 id: 4,
                 team: "TIPSSY",
                 time: "19:50 - 20:20",
-                image: sorimadang,
+                image: tipssy,
             },
             {
                 id: 5,
                 team: "청천벽력",
                 time: "19:50 - 20:20",
-                image: sorimadang,
+                image: boltfromtheblue,
             },
             {
                 id: 6,
                 team: "S.A.K.E.",
                 time: "19:50 - 20:20",
-                image: sorimadang,
+                image: SAKE,
             },
         ],
     },
@@ -221,7 +228,11 @@ export default function HomeBooth() {
                                     : currentArtist.badge
                             }
                             alt="badge"
-                            className={styles.badgeSvg}
+                            className={
+                                showMusic
+                                    ? styles.detailBadgeSvg
+                                    : styles.defaultBadgeSvg
+                            }
                         />
                     </div>
 
@@ -264,7 +275,7 @@ export default function HomeBooth() {
                             className={styles.previewBtn}
                             onClick={() => setShowMusic(true)}
                         >
-                            <img src={PreviewBtn} alt="대표곡 미리듣기" />
+                            <img src={PreviewBtn} alt="대표곡 미리듣기" className={styles.previewBtnImg} />
                         </button>
                     )}
                 </section>

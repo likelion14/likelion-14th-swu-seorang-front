@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
-import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.svg";
+import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.png";
 import BoothInfoButton from "./BoothInfoButton";
 import BoothDetailCard from "./BoothDetailCard";
 import PickerDay from "./PickerDay";

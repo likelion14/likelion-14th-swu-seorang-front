@@ -1,6 +1,6 @@
 import { useState } from "react";
 import StarBlue from "../assets/icon/Sticker/Star-blue-big.svg";
-import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.svg";
+import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.png";
 import BoothInfoButton from "./BoothInfoButton";
 import ShuniBoothDetailCard from "./ShuniBoothDetailCard";
 import {

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import ChevronLeft from "../../assets/icon/Chevron-Left-White.svg";
 import styles from "./CertificateUpload.module.css";
 import NoticeImg from "../../assets/img/Notice.svg"
-import ActiveButton from "../../assets/icon/Btn/ActiveButton.svg";
-import DisabledButton from "../../assets/icon/Btn/DisabledButton.svg";
+import ActiveButton from "../../assets/icon/Btn/ActiveButton.png";
+import DisabledButton from "../../assets/icon/Btn/DisabledButton.png";
 import ErrorIcon from "../../assets/icon/Error-icon.svg";
 import ErrorIconGray from "../../assets/icon/Error-icon-gray.svg";
 import FeedPhotoUploader from "../../assets/img/Feed-Photo-Uploader.svg";

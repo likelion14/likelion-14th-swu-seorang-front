@@ -3,8 +3,8 @@ import { useState } from "react";
 import logo from "../assets/icon/Lion-Logo.svg";
 import userIcon from "../assets/icon/User-icon.svg";
 import "../component/header.css";
-import CancelButton from "../assets/icon/Btn/Modal-Back.svg";
-import LogoutButton from "../assets/icon/Btn/Modal-Logout.svg";
+import CancelButton from "../assets/icon/Btn/Modal-Back.png";
+import LogoutButton from "../assets/icon/Btn/Modal-Logout.png";
 import "../component/header.css";
 import ConfirmModal from "./Modal";
 

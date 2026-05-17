@@ -222,6 +222,7 @@ p {
   width: 343px;
   max-width: 110%;
   height: auto;
+  pointer-events: none;
 }
 
 .submitButton:disabled {

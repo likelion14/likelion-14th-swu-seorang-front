@@ -4,8 +4,8 @@ import Chevron from "../../assets/icon/Chevron-Left-Blue.svg";
 import styles from "./SignUp.module.css";
 import CheckOn from "../../assets/icon/Btn/CheckBox-Active.svg";
 import CheckOff from "../../assets/icon/Btn/CheckBox.svg";
-import DisabledButton from "../../assets/icon/Btn/DisabledButton.svg";
-import ActiveButton from "../../assets/icon/Btn/ActiveButton.svg";
+import DisabledButton from "../../assets/icon/Btn/DisabledButton.png";
+import ActiveButton from "../../assets/icon/Btn/ActiveButton.png";
 import ErrorIcon from "../../assets/icon/Error-icon.svg";
 
 const majors = [

@@ -10,10 +10,10 @@ import DotMenuIcon from "../../assets/icon/Btn/DotMenu.svg";
 import FabImg from "../../assets/icon/Btn/FAB.svg";
 import FabNoticeImg from "../../assets/img/FabNotice.svg";
 import CloseButton from "../../assets/icon/Btn/CloseButton.svg";
-import CancelButton from "../../assets/icon/Btn/CancelButton.svg";
-import DeleteConfirmButton from "../../assets/icon/Btn/DeleteConfirmButton.svg";
-import ModalBack from "../../assets/icon/Btn/Modal-Back.svg";
-import ModalLogin from "../../assets/icon/Btn/Modal-Login.svg";
+import CancelButton from "../../assets/icon/Btn/CancelButton.png";
+import DeleteConfirmButton from "../../assets/icon/Btn/DeleteConfirmButton.png";
+import ModalBack from "../../assets/icon/Btn/Modal-Back.png";
+import ModalLogin from "../../assets/icon/Btn/Modal-Login.png";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
