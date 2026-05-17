@@ -71,6 +71,11 @@ export default function Login() {
                 );
 
                 localStorage.setItem(
+                    "refreshToken",
+                    data.refreshToken
+                );
+
+                localStorage.setItem(
                     "role",
                     data.role
                 );
