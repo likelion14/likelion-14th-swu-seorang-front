@@ -36,6 +36,8 @@ body {
   color: var(--color-text);
 
   background-color: black;
+
+  -webkit-text-size-adjust: 100%;
 }
 
 /* ===== 모바일 화면 최적화 ===== */
