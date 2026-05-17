@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Chevron from "../../assets/icon/Chevron-Left-Blue.svg";
 import styles from "./SignUp.module.css";
-import LoginButton from "../../assets/icon/Btn/Login-Button.svg";
-import SignupButton from "../../assets/icon/Btn/Signup-Button.svg";
+import LoginButton from "../../assets/icon/Btn/Login-Button.png";
+import SignupButton from "../../assets/icon/Btn/Signup-Button.png";
 import ErrorIcon from "../../assets/icon/Error-icon.svg";
 
 export default function Login() {

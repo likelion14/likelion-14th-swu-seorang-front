@@ -1,7 +1,7 @@
 import TagBoothOpen from "../assets/img/Tag-Booth-Open.svg";
 import TagBoothClose from "../assets/img/Tag-Booth-Close.svg";
-import BoothCheck from "../assets/icon/Btn/BoothCheck.svg";
-import StarPinkCheck from "../assets/icon/Sticker/Star-pink-check.svg";
+import BoothCheck from "../assets/icon/Btn/BoothCheck.png";
+import StarPinkCheck from "../assets/icon/Sticker/Star-pink-check.png";
 import type { BoothListItem } from "../types/booth";
 import styles from "./BoothDetailCard.module.css";
 
