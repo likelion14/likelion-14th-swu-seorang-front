@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.png";
 import BoothInfoButton from "./BoothInfoButton";
 import BoothDetailCard from "./BoothDetailCard";
@@ -14,6 +15,11 @@ import type { FestivalDay } from "../types/booth";
 import type { VisitedBooth } from "../api/getVisitedBooths";
 import { checkVisit } from "../api/checkVisit";
 import styles from "./MapBoothMap.module.css";
+
+import LoginModal from "./Modal";
+
+import CancelButton from "../assets/icon/Btn/Modal-Back.png";
+import LogoutButton from "../assets/icon/Btn/Modal-Login.png";
 
 interface MapBoothMapProps {
   selectedDay: FestivalDay;
@@ -41,6 +47,11 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
 
   const filterByDay = <T extends { days: FestivalDay[] }>(items: T[]) =>
     items.filter((item) => item.days.includes(selectedDay));
+
+  const navigate = useNavigate();
+
+  const [showLoginModal, setShowLoginModal] =
+  useState(false);
 
   const leftColumn = useMemo(() => filterByDay(LEFT_COLUMN), [selectedDay]);
   const centerTop = useMemo(() => filterByDay(CENTER_TOP_ROW), [selectedDay]);
@@ -95,6 +106,17 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
         setCheckedBoothIds((prev) => new Set(prev).add(boothId));
       } catch (error) {
         console.error("방문 체크 실패:", error);
+
+        if (
+        error instanceof Error &&
+        error.message ===
+          "로그인이 필요합니다."
+      ) {
+        setShowLoginModal(true);
+
+        return;
+      }
+
         alert(error instanceof Error ? error.message : "방문 체크에 실패했습니다.");
       } finally {
         setCheckingId(null);
@@ -110,6 +132,7 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
       setSelectedCellId(item.mapCellId);
     }
   };
+
 
   return (
     <section className={styles.wrapper}>
@@ -187,6 +210,26 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
               />
             ))}
           </div>
+        )}
+        {showLoginModal && (
+          <LoginModal
+            type="로그인 안내"
+            title="로그인이 필요한 서비스 입니다."
+            description="로그인을 원하지 않는 경우 '돌아가기' 버튼을 눌러주세요." 
+
+            cancelButtonImage={CancelButton}
+            confirmButtonImage={LogoutButton}
+
+            onCancel={() => {
+              setShowLoginModal(false);
+              navigate(-1);
+            }}
+
+            onConfirm={() => {
+              setShowLoginModal(false);
+              navigate("/login");
+            }}
+          />
         )}
       </div>
     </section>

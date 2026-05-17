@@ -424,7 +424,7 @@ export default function Frame() {
 
             onConfirm={() => {
               setShowLoginModal(false);
-              window.location.href = "/login";
+              navigate("/login");
             }}
           />
         )}

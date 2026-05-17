@@ -4,13 +4,18 @@ export interface CheckVisitResponse {
   status: number;
   message: string;
   code?: string;
+  success: boolean;
 }
 
 export const checkVisit = async (boothId: number): Promise<CheckVisitResponse> => {
   const accessToken = localStorage.getItem("accessToken");
 
   if (!accessToken) {
-    throw new Error("로그인이 필요합니다.");
+    return {
+      success: false,
+      status: 401,
+      message: "로그인이 필요합니다.",
+    };
   }
 
   try {
