@@ -10,15 +10,15 @@ import BlurFrame from "../../assets/img/Blur-Frame.svg";
 import FrameImage from "../../assets/img/Frame.png";
 
 import Placeholder from "../../assets/icon/Plus-Icon.svg";
-import EditButton from "../../assets/icon/Btn/Frame-Edit.svg";
+import EditButton from "../../assets/icon/Btn/Frame-Edit.png";
 import DeleteIcon from "../../assets/icon/Trash-icon.svg";
-import DownloadButton from "../../assets/icon/Btn/Frame-Download.svg";
+import DownloadButton from "../../assets/icon/Btn/Frame-Download.png";
 import RefreshButton from "../../assets/icon/Btn/Refresh-Button.svg";
 import FrameEvent from "../../assets/icon/Frame-event.svg";
 import LoginModal from "../../component/Modal";
 
-import CancelButton from "../../assets/icon/Btn/Modal-Back.svg";
-import LogoutButton from "../../assets/icon/Btn/Modal-Login.svg";
+import CancelButton from "../../assets/icon/Btn/Modal-Back.png";
+import LogoutButton from "../../assets/icon/Btn/Modal-Login.png";
 
 import html2canvas from "html2canvas";
 

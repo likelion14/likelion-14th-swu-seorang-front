@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import StarBlue from "../assets/icon/Sticker/Star-blue-big.svg";
-import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.svg";
+import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.png";
 import FoodTruckDetailCard from "./FoodTruckDetailCard";
 import {
   FOOD_TRUCK_LIST,

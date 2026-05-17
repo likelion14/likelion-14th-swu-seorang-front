@@ -53,7 +53,8 @@
 }
 
 .buttonImage {
-    flex: 1;
+    width: 134px;
+    height: auto;
     cursor: pointer;
 }
 
