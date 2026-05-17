@@ -11,11 +11,7 @@ export const checkVisit = async (boothId: number): Promise<CheckVisitResponse> =
   const accessToken = localStorage.getItem("accessToken");
 
   if (!accessToken) {
-    return {
-      success: false,
-      status: 401,
-      message: "로그인이 필요합니다.",
-    };
+    throw new Error("로그인이 필요합니다.");
   }
 
   try {
