@@ -16,7 +16,7 @@ import hyeyumies from "../../assets/icon/performance/hyeyumies.svg";
 import boltfromtheblue from "../../assets/icon/performance/boltfromtheblue.svg";
 import SAKE from "../../assets/icon/performance/SAKE.svg";
 import tipssy from "../../assets/icon/performance/tipssy.svg";
-import PreviewBtn from "../../assets/icon/Btn/Artist-Song.png";
+import PreviewBtn from "../../assets/icon/Btn/Artist-song.png";
 import DetailBadge from "../../assets/icon/Btn/Artist-Info.png";
 
 import styles from "./performance.module.css";
