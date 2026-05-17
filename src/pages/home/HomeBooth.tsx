@@ -106,7 +106,12 @@ export default function HomeBooth() {
       case 1:
         return <FoodTruckBoothMap />;
       case 2:
-        return <FleaMarketBoothMap />;
+        return (
+          <FleaMarketBoothMap
+            selectedDay={selectedDay}
+            onDayChange={setSelectedDay}
+          />
+        );
       case 3:
         return <ShuniBoothMap />;
       default:
