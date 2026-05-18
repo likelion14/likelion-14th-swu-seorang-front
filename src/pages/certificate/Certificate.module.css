@@ -189,7 +189,7 @@ p {
 /* ===== FAB ===== */
 .fabWrapper {
   position: fixed;
-  bottom: 16.5vh;
+  bottom: 10.5vh;
   right: max(16px, calc((100vw - 400px) / 2 + 16px));
   display: flex;
   flex-direction: column;
