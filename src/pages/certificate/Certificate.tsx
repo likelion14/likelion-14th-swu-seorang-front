@@ -184,7 +184,7 @@ export default function Certificate() {
             </div>
             <p className={styles.modalDesc}>
               삭제한 게시물은 되돌릴 수 없습니다. <br />
-              삭제를 원하지 않는 경우 '돌아가기' 버튼을 눌러주세요.
+              삭제를 원하지 않는 경우 '취소' 버튼을 눌러주세요.
             </p>
             <div className={styles.modalBtns}>
               <button className={styles.modalBtn} onClick={() => setDeleteTargetId(null)}>
