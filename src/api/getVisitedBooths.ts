@@ -4,6 +4,8 @@ export interface VisitedBooth {
   id: number;
   name: string;
   dayOpen: boolean;
+  operatingTime: string;
+  operatingStatus: string;
   visited: boolean;
 }
 

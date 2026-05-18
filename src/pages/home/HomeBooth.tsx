@@ -47,6 +47,8 @@ export default function HomeBooth() {
           const data = await getBooths(dayNumber);
           const dataWithVisited: VisitedBooth[] = data.map((booth) => ({
             ...booth,
+            operatingTime: "",
+            operatingStatus: "",
             visited: false,
           }));
           setBooths(dataWithVisited);
@@ -59,6 +61,8 @@ export default function HomeBooth() {
           const data = await getBooths(dayNumber);
           const dataWithVisited: VisitedBooth[] = data.map((booth) => ({
             ...booth,
+            operatingTime: "",
+            operatingStatus: "",
             visited: false,
           }));
           setBooths(dataWithVisited);
