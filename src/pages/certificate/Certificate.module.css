@@ -189,7 +189,7 @@ p {
 /* ===== FAB ===== */
 .fabWrapper {
   position: fixed;
-  bottom: 18.5vh;
+  bottom: 16.5vh;
   right: max(16px, calc((100vw - 400px) / 2 + 16px));
   display: flex;
   flex-direction: column;
@@ -214,6 +214,12 @@ p {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 12px rgba(28, 202, 251, 0.45);
+}
+
+.fabimg {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
 
 /* ===== Delete Modal ===== */
