@@ -250,13 +250,11 @@ export default function HomeBooth() {
                         <div className={styles.musicWrapper}>
                             <iframe
                                 allow="autoplay *; encrypted-media *;"
-                                height="450"
                                 style={{
                                     width: "100%",
-                                    height: "790px",
+                                    height: "450px",
                                     border: "none",
                                     borderRadius: "12px",
-                                    zoom: "0.53",
                                 }}
                                 src={currentArtist.musicUrl}
                                 className={styles.appleMusic}
