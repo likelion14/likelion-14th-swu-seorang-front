@@ -95,7 +95,7 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
         id: `api-${booth.id}`,
         department: booth.name,
         mapCellId: getMapCellIdByDepartmentName(booth.name),
-        isOpen: booth.dayOpen,
+        isOpen: booth.operatingStatus === "운영중",
         days: [selectedDay],
         checked: checkedBoothIds.has(`api-${booth.id}`),
       }));
