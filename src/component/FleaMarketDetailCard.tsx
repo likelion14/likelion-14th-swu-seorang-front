@@ -14,6 +14,16 @@ export default function FleaMarketDetailCard({
   selected = false,
   onClick,
 }: FleaMarketDetailCardProps) {
+  const isOperating = () => {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const currentTime = currentHour * 60 + currentMinute;
+    const startTime = 11 * 60; // 11:00
+    const endTime = 17 * 60; // 17:00
+    return currentTime >= startTime && currentTime < endTime;
+  };
+
   return (
     <article
       className={`${styles.card} ${selected ? styles.cardSelected : ""}`}
@@ -29,8 +39,8 @@ export default function FleaMarketDetailCard({
         <h3 className={styles.name}>{item.name}</h3>
         <div className={styles.statusRow}>
           <img
-            src={item.isOpen ? TagBoothOpen : TagBoothClose}
-            alt={item.isOpen ? "운영중" : "운영전"}
+            src={isOperating() ? TagBoothOpen : TagBoothClose}
+            alt={isOperating() ? "운영중" : "운영전"}
           />
         </div>
       </div>

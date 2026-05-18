@@ -14,6 +14,16 @@ export default function FoodTruckDetailCard({
   selected = false,
   onClick,
 }: FoodTruckDetailCardProps) {
+  const isOperating = () => {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const currentTime = currentHour * 60 + currentMinute;
+    const startTime = 10 * 60; // 10:00
+    const endTime = 21 * 60 + 30; // 21:30
+    return currentTime >= startTime && currentTime < endTime;
+  };
+
   return (
     <article
       className={`${styles.card} ${selected ? styles.cardSelected : ""}`}
@@ -29,8 +39,8 @@ export default function FoodTruckDetailCard({
         <h3 className={styles.name}>{item.name}</h3>
         <div className={styles.statusRow}>
           <img
-            src={item.status === "operating" ? TagBoothOpen : TagBoothClose}
-            alt={item.status === "operating" ? "운영중" : "운영전"}
+            src={isOperating() ? TagBoothOpen : TagBoothClose}
+            alt={isOperating() ? "운영중" : "운영전"}
           />
         </div>
       </div>
