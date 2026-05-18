@@ -74,6 +74,7 @@
   cursor: pointer;
   box-sizing: border-box;
   box-shadow: -1px 2px 2px 0 rgba(28, 202, 251, 0.05) inset, 0 1px 4px 0 rgba(0, 0, 0, 0.10) inset, 1px -2px 6px 0 rgba(0, 0, 0, 0.10) inset, 1px -2px 6px 0 #FFF1FF inset, -4px 6px 2px 0 #FFF inset;
+  white-space: pre-line;
 }
 
 .categoryButtonSelected {
