@@ -222,7 +222,7 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
 
             onCancel={() => {
               setShowLoginModal(false);
-              navigate(-1);
+              navigate("/");
             }}
 
             onConfirm={() => {

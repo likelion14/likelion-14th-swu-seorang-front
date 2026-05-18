@@ -67,7 +67,9 @@ export default function CertificateUpload() {
   };
 
   const canSubmit = photoFile !== null && tags.length >= 1;
-  
+
+  const [isPhotoSelected, setIsPhotoSelected] = useState(false);
+
   const handleSubmit = async () => {
     if (!canSubmit) return;
     const token = localStorage.getItem("accessToken");
@@ -76,9 +78,9 @@ export default function CertificateUpload() {
     formData.append("tag1", tags[0]);
     if (tags[1]) formData.append("tag2", tags[1]);
 
-    await fetch(`${BASE_URL}/api/posts`,{
+    await fetch(`${BASE_URL}/api/posts`, {
       method: "POST",
-      headers: {Authorization: `Bearer ${token}`},
+      headers: { Authorization: `Bearer ${token}` },
       body: formData,
     });
     navigate(-1);
@@ -95,7 +97,7 @@ export default function CertificateUpload() {
       </div>
 
       <div className={styles.inner}>
-        <img src={NoticeImg} alt="이벤트 공지"/>
+        <img src={NoticeImg} alt="이벤트 공지" />
 
         <div className={styles.uploaderWrapper}>
           <input
@@ -107,23 +109,39 @@ export default function CertificateUpload() {
           />
 
           {photoUrl ? (
-            <div className={styles.photoPreview}>
+            <div
+              className={styles.photoPreview}
+              onClick={() =>
+                setIsPhotoSelected((prev) => !prev)
+              }
+            >
               <img src={photoUrl} alt="업로드 사진" className={styles.previewImg} />
-              <div className={styles.photoOverlay}>
-                <button
-                  className={styles.trashBtn}
-                  onClick={() => setPhotoUrl(null)}
+              {isPhotoSelected && (
+                <div
+                  className={styles.photoOverlay}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsPhotoSelected(false);
+                  }}
                 >
-                  <img src={TrashButton} alt="사진 삭제"/>
-                </button>
-              </div>
+                  <button
+                    className={styles.trashBtn}
+                    onClick={() => {
+                      setPhotoUrl(null);
+                      setPhotoFile(null);
+                      setIsPhotoSelected(false);
+                    }}
+                  >
+                    <img src={TrashButton} alt="사진 삭제" />
+                  </button>
+                </div>)}
             </div>
           ) : (
             <button
               className={styles.photoPlaceholder}
               onClick={() => fileInputRef.current?.click()}
             >
-              <img src={FeedPhotoUploader} alt="사진추가" className={styles.UploaderImg}/>
+              <img src={FeedPhotoUploader} alt="사진추가" className={styles.UploaderImg} />
             </button>
           )}
         </div>
@@ -161,12 +179,12 @@ export default function CertificateUpload() {
             </span>
           </div>
 
-          <div className ={styles.tagHint}>
+          <div className={styles.tagHint}>
             <img
               src={tagError ? ErrorIcon : ErrorIconGray}
               alt=""
               className={styles.tagHintIcon}
-              />
+            />
             <span className={tagError ? styles.tagHintTextError : styles.tagHintText}>
               태그는 최대 2개, 각 4글자까지 입력 가능해요
             </span>
@@ -175,10 +193,10 @@ export default function CertificateUpload() {
 
         <button
           className={styles.submitBtn}
-          onClick={() => {if(canSubmit) handleSubmit();}}
+          onClick={() => { if (canSubmit) handleSubmit(); }}
           disabled={!canSubmit}
         >
-        <img src={canSubmit ? ActiveButton : DisabledButton} alt="완료 버튼"/>
+          <img src={canSubmit ? ActiveButton : DisabledButton} alt="완료 버튼" />
         </button>
       </div>
     </div>
