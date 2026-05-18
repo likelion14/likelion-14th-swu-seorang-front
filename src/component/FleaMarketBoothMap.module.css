@@ -100,7 +100,7 @@
   overflow-x: auto;
   padding-bottom: 4px;
   scrollbar-width: none;
-  margin: 0 -27px;
+  margin: 0 -27px 0 0;
 }
 
 .listScroll::-webkit-scrollbar {
