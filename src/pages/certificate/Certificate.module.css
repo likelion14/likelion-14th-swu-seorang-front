@@ -22,8 +22,8 @@ p {
 /* ==== Notice ==== */
 
 .notice {
-  width: 100;
-  max-width: 343;
+  width: 100%;
+  max-width: 343px;
   height: auto;
   display: block;
 }
