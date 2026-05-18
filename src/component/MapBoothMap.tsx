@@ -21,6 +21,38 @@ import LoginModal from "./Modal";
 import CancelButton from "../assets/icon/Btn/Modal-Back.png";
 import LogoutButton from "../assets/icon/Btn/Modal-Login.png";
 
+// 학과 이름으로 mapCellId 매핑
+const getMapCellIdByDepartmentName = (departmentName: string): string => {
+  const mapping: Record<string, string> = {
+    "미래산업융합대학": "fusion",
+    "경영학과": "biz",
+    "패션산업학과": "biz",
+    "산업디자인학과": "ind-data",
+    "데이터사이언스학과": "ind-data",
+    "미래산업융합자유전공": "software",
+    "소프트웨어학과": "software",
+    "디지털미디어학과": "digital",
+    "지능정보보호학부": "digital",
+    "아트앤디자인스쿨": "fashion1",
+    "시각디자인전공": "city",
+    "공예전공": "craft",
+    "첨단미디어디자인전공": "chem",
+    "현대미술전공": "contemporary-art",
+    "행정학과": "admin",
+    "언론영상학부": "admin",
+    "아동학과": "child",
+    "심리인지과학학부": "child",
+    "스포츠운동과학과": "social",
+    "사회복지학과": "social",
+    "문헌정보학과": "culture",
+    "경제학과": "culture",
+    "사회과학자유전공": "edu",
+    "사회과학대학": "edu",
+    "자유전공학부": "free1",
+  };
+  return mapping[departmentName] || "";
+};
+
 interface MapBoothMapProps {
   selectedDay: FestivalDay;
   onDayChange: (day: FestivalDay) => void;
@@ -59,14 +91,21 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
   const rightColumn = useMemo(() => filterByDay(RIGHT_COLUMN), [selectedDay]);
   const boothList = useMemo(() => {
     if (booths.length > 0) {
-      return booths.map((booth) => ({
+      const mapped = booths.map((booth) => ({
         id: `api-${booth.id}`,
         department: booth.name,
-        mapCellId: "",
+        mapCellId: getMapCellIdByDepartmentName(booth.name),
         isOpen: booth.dayOpen,
         days: [selectedDay],
         checked: checkedBoothIds.has(`api-${booth.id}`),
       }));
+
+      // 선택된 셀이 있으면 해당 셀에 속하는 부스만 필터링
+      if (selectedCellId) {
+        return mapped.filter((item) => item.mapCellId === selectedCellId);
+      }
+
+      return mapped;
     }
 
     const filtered = filterByDay(DEPARTMENT_BOOTH_LIST);

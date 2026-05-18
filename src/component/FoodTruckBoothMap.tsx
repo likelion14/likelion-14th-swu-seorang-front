@@ -9,6 +9,14 @@ import {
 } from "../data/foodTruckData";
 import styles from "./FoodTruckBoothMap.module.css";
 
+// 4글자는 2/2로 분리, 3글자는 한 줄로 유지
+const processCategoryLabel = (label: string): string => {
+  if (label.length === 4) {
+    return label.slice(0, 2) + "\n" + label.slice(2);
+  }
+  return label;
+};
+
 export default function FoodTruckBoothMap() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -38,7 +46,7 @@ export default function FoodTruckBoothMap() {
                 }`}
                 onClick={() => setSelectedCategory(category)}
               >
-                {category}
+                {processCategoryLabel(category)}
               </button>
             ))}
           </div>
