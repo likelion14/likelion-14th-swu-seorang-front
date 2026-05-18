@@ -128,9 +128,10 @@ export default function HomeBooth() {
 
         <BoothTab currentIndex={currentIndex} onIndexChange={setCurrentIndex} />
 
-        <BoothLocationInfo locationText={locationText} />
-
-        {renderContent()}
+        <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+          <BoothLocationInfo locationText={locationText} />
+          {renderContent()}
+        </div>
       </div>
     </div>
   );
