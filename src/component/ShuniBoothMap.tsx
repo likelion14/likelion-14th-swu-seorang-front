@@ -56,7 +56,9 @@ export default function ShuniBoothMap() {
 
       <div className={styles.listSection}>
         <h2 className={styles.listTitle}>부스목록</h2>
-        <ShuniBoothDetailCard />
+        <div className={styles.listScroll}>
+          <ShuniBoothDetailCard />
+        </div>
       </div>
     </section>
   );

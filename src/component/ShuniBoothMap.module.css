@@ -6,7 +6,7 @@
 .mapContainer {
   position: relative;
   width: 100%;
-  min-height: 337px;
+  height: 337px;
   padding: 25px 10px 13.026px 11px;
   border: 4px dashed #f9fafa;
   border-radius: 12px;
@@ -75,6 +75,8 @@
 
 .listSection {
   margin-top: 24px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .listTitle {
@@ -89,4 +91,18 @@
   font-weight: 400;
   line-height: 130%;
   margin: 0 0 8px;
+}
+
+.listScroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.listScroll::-webkit-scrollbar {
+  display: none;
 }
