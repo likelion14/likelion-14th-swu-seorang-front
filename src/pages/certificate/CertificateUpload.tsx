@@ -83,7 +83,7 @@ export default function CertificateUpload() {
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
     });
-    navigate(-1);
+    navigate('/certificate');
   };
 
   return (
@@ -167,6 +167,7 @@ export default function CertificateUpload() {
                   value={tagInput}
                   onChange={handleTagInputChange}
                   onKeyDown={handleTagKeyDown}
+                  onBlur={() => { if (tagInput.trim()) addTag(); }}
                   onCompositionStart={() => setIsComposing(true)}
                   onCompositionEnd={() => setIsComposing(false)}
                   placeholder={tags.length === 0 ? "태그를 작성해주세요" : ""}
