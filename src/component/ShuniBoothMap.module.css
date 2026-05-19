@@ -27,7 +27,7 @@
   align-items: center;
   justify-content: center;
   padding: 4px;
-  border: 1px solid rgba(28, 202, 251, 0.2);
+  border: 2px solid rgba(28, 202, 251, 0.2);
   border-radius: 4px;
   background: rgba(28, 202, 251, 0.05);
   box-sizing: border-box;
@@ -44,9 +44,15 @@
 }
 
 .sci2Zone {
+  border: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='150' viewBox='0 0 110 150' fill='none'%3E%3Cpath d='M0.000358835 3.99999C0.000364265 1.79085 1.79122 0 4.00036 0H106C108.209 0 110 1.79086 110 4V40C110 42.2091 108.209 44 106 44H37.4358C35.2266 44 33.4358 45.7909 33.4358 48V146C33.4358 148.209 31.6449 150 29.4358 150H4.00001C1.79087 150 4.40155e-06 148.209 9.83113e-06 146L0.000358835 3.99999Z' fill='%231CCAFB' fill-opacity='0.05'/%3E%3Cpath d='M4 1H106C107.657 1 109 2.34315 109 4V40C109 41.6569 107.657 43 106 43H37.4355C34.6742 43.0001 32.4355 45.2387 32.4355 48V146C32.4355 147.657 31.0924 149 29.4355 149H4C2.34315 149 1 147.657 1 146V4C1 2.34327 2.34331 1.00019 4 1Z' stroke='%231CCAFB' stroke-opacity='0.2' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   align-items: flex-start;
-  justify-content: flex-start;
-  padding: 8px 10px;
+  justify-content: center;
+  padding: 15px 10px 8px 10px;
 }
 
 .boothMarker {
