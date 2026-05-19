@@ -105,10 +105,10 @@
   width: 100px;
   height: 140px;
   aspect-ratio: 5 / 7;
-  
-  flex-shrink: 0; 
-  
-  border-radius: 8px;
-  border: 1px solid #e6e8ea;
-  box-sizing: border-box; 
+
+  flex-shrink: 0;
+
+  box-sizing: border-box;
+  object-fit: contain;
+  background: white;
 }
