@@ -367,7 +367,7 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
                 })}
             </div>
 
-            <div className={styles.centerMiddleRow}>
+            <div className={`${styles.centerMiddleRow} ${selectedDay === "2025-05-22" ? styles.centerMiddleRowFriday : ""}`}>
               {centerMiddle.map((cell) => {
                 const cellSelectionId = cell.mapCellId ?? cell.id;
                 return (
