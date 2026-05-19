@@ -52,6 +52,8 @@ export default function Frame() {
   const [finalImage, setFinalImage] =
     useState("");
 
+  const [isExporting, setIsExporting] = useState(false);
+
   // 프레임 ref
   const frameRef =
     useRef<HTMLDivElement>(null);
@@ -107,20 +109,15 @@ export default function Frame() {
   };
 
 
-  // 네 장 모두 채워졌는지 검사
-  const isAllImagesFilled = images.every(
-    (image) => image !== ""
-  );
+
 
   // 네컷 생성
   const handleCreateFrame = async () => {
-    if (!isAllImagesFilled) {
-      return;
-    }
 
     if (!frameRef.current) return;
 
     setSelectedSlots([]);
+    setIsExporting(true);
 
     await new Promise((resolve) =>
       requestAnimationFrame(() =>
@@ -144,6 +141,8 @@ export default function Frame() {
         URL.createObjectURL(blob);
 
       setFinalImage(imageUrl);
+
+      setIsExporting(false);
 
       setIsBottomSheetOpen(true);
     }, "image/png");
@@ -328,15 +327,18 @@ export default function Frame() {
                 </>
               ) : (
                 <div
-                  className={styles.placeholder}
+                  className={`${styles.placeholder} ${isExporting ? styles.exportPlaceholder : ""
+                    }`}
                 >
-                  <img
-                    src={Placeholder}
-                    className={
-                      styles.placeholderIcon
-                    }
-                  />
-                  <p>사진 추가</p>
+                  {!isExporting && (
+                    <>
+                      <img
+                        src={Placeholder}
+                        className={styles.placeholderIcon}
+                      />
+                      <p>사진 추가</p>
+                    </>
+                  )}
                 </div>
               )}
 
@@ -412,7 +414,7 @@ export default function Frame() {
           <LoginModal
             type="로그인 안내"
             title="로그인이 필요한 서비스 입니다."
-            description="로그인을 원하지 않는 경우 '돌아가기' 버튼을 눌러주세요." 
+            description="로그인을 원하지 않는 경우 '돌아가기' 버튼을 눌러주세요."
 
             cancelButtonImage={CancelButton}
             confirmButtonImage={LogoutButton}
