@@ -21,6 +21,14 @@ export const LEFT_COLUMN_FRIDAY: BoothGridCell[] = [
   { id: "sci-tech", labels: ["과기융"], departmentName: "과학기술융합대학", days: day3Only },
 ];
 
+export const LEFT_COLUMN_THURSDAY: BoothGridCell[] = [
+  { id: "media-admin", labels: ["언영", "행정"], departmentName: "언론영상학부, 행정학과", days: day2Only },
+  { id: "psych-child", labels: ["심과", "아동"], departmentName: "심리인지과학학부, 아동학과", days: day2Only },
+  { id: "social-sports", labels: ["사복", "스과"], departmentName: "사회복지학과, 스포츠운동과학과", days: day2Only },
+  { id: "econ-doc", labels: ["경제", "문정"], departmentName: "경제학과, 문헌정보학과", days: day2Only },
+  { id: "soc-sci-only", labels: ["사대"], departmentName: "사회과학대학", days: day2Only },
+];
+
 export const CENTER_TOP_ROW: BoothGridCell[] = [
   { id: "city", labels: ["시디"], departmentName: "시각디자인전공", days: bothDays },
   { id: "chem", labels: ["첨디"], departmentName: "첨단미디어디자인전공", days: bothDays },
@@ -30,6 +38,10 @@ export const CENTER_TOP_ROW: BoothGridCell[] = [
   { id: "fashion1b", mapCellId: "fashion1", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: bothDays },
 ];
 
+export const CENTER_TOP_ROW_THURSDAY: BoothGridCell[] = [
+  { id: "college-thu", labels: ["학부"], departmentName: "학부", days: day2Only, wide: true },
+];
+
 export const CENTER_MIDDLE_ROW: BoothGridCell[] = [
   { id: "inmun", labels: ["인대"], departmentName: "인문대학", days: bothDays },
   { id: "english", labels: ["영문"], departmentName: "영어영문학과", days: bothDays },
@@ -37,6 +49,15 @@ export const CENTER_MIDDLE_ROW: BoothGridCell[] = [
   { id: "german", labels: ["독문"], departmentName: "독일문화콘텐츠전공", days: bothDays },
   { id: "korean", labels: ["국문"], departmentName: "국어국문학과", days: bothDays },
   { id: "ai-content", labels: ["에융"], departmentName: "AI융합콘텐츠전공", days: bothDays },
+];
+
+export const CENTER_MIDDLE_ROW_THURSDAY: BoothGridCell[] = [
+  { id: "inmun-thu", labels: ["인대"], departmentName: "인문대학", days: day2Only },
+  { id: "english-thu", labels: ["영문"], departmentName: "영어영문학과", days: day2Only },
+  { id: "french-thu", labels: ["프문"], departmentName: "프랑스문화콘텐츠전공", days: day2Only },
+  { id: "german-thu", labels: ["독문"], departmentName: "독일문화콘텐츠전공", days: day2Only },
+  { id: "korean-thu", labels: ["국문"], departmentName: "국어국문학과", days: day2Only },
+  { id: "ai-content-thu", labels: ["에융"], departmentName: "AI융합콘텐츠전공", days: day2Only },
 ];
 
 export const CENTER_TOP_ROW_FRIDAY: BoothGridCell[] = [
@@ -55,7 +76,19 @@ export const CENTER_BOTTOM_ROW: BoothGridCell[] = [
   { id: "jungmun", labels: ["중문"], departmentName: "중어중문학과", days: bothDays },
 ];
 
+export const CENTER_BOTTOM_ROW_THURSDAY: BoothGridCell[] = [
+  { id: "corp", labels: ["기업 및\n단체부스"], departmentName: "기업 및 단체부스", days: day2Only, wide: true },
+  { id: "gidok", labels: ["기독"], departmentName: "기독교학과", days: day2Only },
+  { id: "sahak", labels: ["사학"], departmentName: "사학과", days: day2Only },
+  { id: "ilmun", labels: ["일문"], departmentName: "일어일문학과", days: day2Only },
+  { id: "jungmun", labels: ["중문"], departmentName: "중어중문학과", days: day2Only },
+];
+
 export const CENTER_BOTTOM_ROW_FRIDAY: BoothGridCell[] = [
+  // Friday bottom row intentionally empty; Friday '학부' is placed in CENTER_MIDDLE_ROW_FRIDAY
+];
+
+export const CENTER_MIDDLE_ROW_FRIDAY: BoothGridCell[] = [
   {
     id: "college",
     labels: ["학부"],
@@ -73,12 +106,20 @@ export const RIGHT_COLUMN: BoothGridCell[] = [
   { id: "fusion", labels: ["미산융"], departmentName: "미래산업융합대학", days: bothDays, tall: true },
 ];
 
+export const RIGHT_COLUMN_THURSDAY: BoothGridCell[] = [
+  { id: "digital", labels: ["패산", "정보"], departmentName: "패션산업학과, 지능정보보호학부", days: day2Only },
+  { id: "software", labels: ["소웨", "디미"], departmentName: "소프트웨어학과, 디지털미디어학과", days: day2Only },
+  { id: "ind-data", labels: ["경영", "산디"], departmentName: "경영학과, 산업디자인학과", days: day2Only },
+  { id: "biz", labels: ["데사"], departmentName: "데이터사이언스학과", days: day2Only, tall: true },
+  { id: "fusion", labels: ["미산융"], departmentName: "미래산업융합대학", days: day2Only, tall: true },
+];
+
 export const RIGHT_COLUMN_FRIDAY: BoothGridCell[] = [
   { id: "econ", labels: ["경제", "문정"], departmentName: "경제학과, 문헌정보학과", days: day3Only },
   { id: "social-welfare", labels: ["사복", "스과"], departmentName: "사회복지학과, 스포츠운동과학과", days: day3Only },
   { id: "psych", labels: ["심과", "아동"], departmentName: "심리인지과학학부, 아동학과", days: day3Only },
   { id: "media", labels: ["언영", "행정"], departmentName: "언론영상학부, 행정학과", days: day3Only },
-  { id: "soc-sci", labels: ["사대"], departmentName: "사회과학대학", days: day3Only },
+  { id: "soc-sci", labels: ["사대"], departmentName: "사회과학대학", days: day3Only, tall: true },
 ];
 
 export const DEPARTMENT_BOOTH_LIST: BoothListItem[] = [
@@ -513,6 +554,7 @@ export const getAllGridCells = (): BoothGridCell[] => [
 export const getAllGridCellsFriday = (): BoothGridCell[] => [
   ...LEFT_COLUMN_FRIDAY,
   ...CENTER_TOP_ROW_FRIDAY,
+  ...CENTER_MIDDLE_ROW_FRIDAY,
   ...CENTER_BOTTOM_ROW_FRIDAY,
   ...RIGHT_COLUMN_FRIDAY,
 ];
