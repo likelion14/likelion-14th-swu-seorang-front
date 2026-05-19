@@ -2,8 +2,10 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export interface Booth {
   id: number;
-  dayOpen: boolean;
   name: string;
+  dayOpen: boolean;
+  operatingTime: string;
+  operatingStatus: string;
 }
 
 export const getBooths = async (day: number): Promise<Booth[]> => {
