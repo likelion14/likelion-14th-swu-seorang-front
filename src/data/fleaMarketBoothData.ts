@@ -19,8 +19,8 @@ export interface FleaMarketListItem {
 }
 
 export const FLEA_MARKET_ZONES = {
-  top: { id: "triangle-forest", label: "삼각숲" },
-  bottom: { id: "hansaem", label: "한샘길" },
+  top: { id: "triangle-forest", label: "잔디광장" },
+  bottom: { id: "hansaem", label: "누리관" },
 } as const;
 
 export const FLEA_MARKET_MARKERS: FleaMarketMarker[] = [
