@@ -8,10 +8,13 @@
   width: 100%;
   min-height: 337px;
   padding: 25px 10px 13px 11px;
-  border: 4px dashed #f9fafa;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='347' height='341' viewBox='0 0 347 341'%3E%3Crect x='2' y='2' width='343' height='337' rx='12' stroke='%23F9FAFA' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='14 12' fill='none'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .mapLayout {
