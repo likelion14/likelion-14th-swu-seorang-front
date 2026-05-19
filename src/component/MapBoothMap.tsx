@@ -16,6 +16,7 @@ import {
   CENTER_BOTTOM_ROW_THURSDAY,
   DEPARTMENT_BOOTH_LIST,
   DEPARTMENT_BOOTH_LIST_FRIDAY,
+  DEPARTMENT_BOOTH_LIST_THURSDAY,
   LEFT_COLUMN,
   LEFT_COLUMN_FRIDAY,
   LEFT_COLUMN_THURSDAY,
@@ -37,9 +38,11 @@ import LogoutButton from "../assets/icon/Btn/Modal-Login.png";
 const getMapCellIdByDepartmentName = (departmentName: string, selectedDay: FestivalDay): string => {
   const fridayMapping: Record<string, string> = {
     "생명환경공학과": "bio-env",
+    "바이오헬스융합학과": "bio-env",
     "식품영양학과": "food-nutri",
+    "식품생명공학과": "food-nutri",
     "원예생명조경학과": "horticulture",
-    "화학과": "chem",
+    "화학과": "horticulture",
     "수학과": "math",
     "시각디자인전공": "visual-design",
     "첨단미디어디자인전공": "advanced-media",
@@ -50,14 +53,45 @@ const getMapCellIdByDepartmentName = (departmentName: string, selectedDay: Festi
     "자유전공학부": "free1",
     "과학기술융합대학": "sci-tech",
     "경제학과": "econ",
-    "문헌정보학과": "doc-info",
+    "문헌정보학과": "econ",
     "사회복지학과": "social-welfare",
-    "스포츠운동과학과": "sports",
+    "스포츠운동과학과": "social-welfare",
     "심리인지과학학부": "psych",
-    "아동학과": "child",
+    "아동학과": "psych",
     "언론영상학부": "media",
-    "행정학과": "admin",
+    "행정학과": "media",
     "사회과학대학": "soc-sci",
+  };
+
+  const thursdayMapping: Record<string, string> = {
+    "언론영상학부": "media-admin",
+    "행정학과": "media-admin",
+    "심리인지과학학부": "psych-child",
+    "아동학과": "psych-child",
+    "사회복지학과": "social-sports",
+    "스포츠운동과학과": "social-sports",
+    "경제학과": "econ-doc",
+    "문헌정보학과": "econ-doc",
+    "사회과학대학": "soc-sci-only",
+    "인문대학": "inmun-thu",
+    "영어영문학과": "english-thu",
+    "프랑스문화콘텐츠전공": "french-thu",
+    "독일문화콘텐츠전공": "german-thu",
+    "국어국문학과": "korean-thu",
+    "AI융합콘텐츠전공": "ai-content-thu",
+    "기업 및 단체부스": "corp",
+    "기독교학과": "gidok",
+    "사학과": "sahak",
+    "일어일문학과": "ilmun",
+    "중어중문학과": "jungmun",
+    "패션산업학과": "digital",
+    "지능정보보호학부": "digital",
+    "소프트웨어학과": "software",
+    "디지털미디어학과": "software",
+    "경영학과": "ind-data",
+    "산업디자인학과": "ind-data",
+    "데이터사이언스학과": "biz",
+    "미래산업융합대학": "fusion",
   };
 
   const defaultMapping: Record<string, string> = {
@@ -107,7 +141,12 @@ const getMapCellIdByDepartmentName = (departmentName: string, selectedDay: Festi
     "자유전공학부": "free1",
   };
 
-  const mapping = selectedDay === "2025-05-22" ? fridayMapping : defaultMapping;
+  const mapping =
+    selectedDay === "2025-05-22"
+      ? fridayMapping
+      : selectedDay === "2025-05-21"
+      ? thursdayMapping
+      : defaultMapping;
   return mapping[departmentName] || "";
 };
 
@@ -224,7 +263,11 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
     }
 
     const filtered = filterByDay(
-      selectedDay === "2025-05-22" ? DEPARTMENT_BOOTH_LIST_FRIDAY : DEPARTMENT_BOOTH_LIST
+      selectedDay === "2025-05-22"
+        ? DEPARTMENT_BOOTH_LIST_FRIDAY
+        : selectedDay === "2025-05-21"
+        ? DEPARTMENT_BOOTH_LIST_THURSDAY
+        : DEPARTMENT_BOOTH_LIST
     );
     const mapped = filtered.map((item) => ({
       ...item,
