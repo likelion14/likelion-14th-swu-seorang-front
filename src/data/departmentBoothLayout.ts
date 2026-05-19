@@ -6,43 +6,79 @@ const day2Only: FestivalDay[] = ["2025-05-21"];
 const day3Only: FestivalDay[] = ["2025-05-22"];
 
 export const LEFT_COLUMN: BoothGridCell[] = [
-  { id: "admin", labels: ["행정", "언영"], departmentName: "행정학과, 언론영상학부", days: bothDays },
-  { id: "child", labels: ["아동", "심과"], departmentName: "아동학과, 심리인지과학학부", days: bothDays },
-  { id: "social", labels: ["스과", "사복"], departmentName: "스포츠운동과학과, 사회복지학과", days: bothDays },
-  { id: "culture", labels: ["문정", "경제"], departmentName: "문헌정보학과, 경제학과", days: day1Only },
-  { id: "edu", labels: ["사전", "사대"], departmentName: "사회과학자유전공, 사회과학대학", days: bothDays },
+  { id: "bio-env", labels: ["생공", "바헬"], departmentName: "생명환경공학과, 바이오헬스융합학과", days: bothDays },
+  { id: "food-nutri", labels: ["식영", "식공"], departmentName: "식품영양학과, 식품생명공학과", days: bothDays },
+  { id: "horticulture", labels: ["원조", "화학"], departmentName: "원예생명조경학과, 화학과", days: bothDays },
+  { id: "math", labels: ["수학"], departmentName: "수학과", days: bothDays },
+  { id: "sci-tech", labels: ["과기융"], departmentName: "과학기술융합대학", days: bothDays },
+];
+
+export const LEFT_COLUMN_FRIDAY: BoothGridCell[] = [
+  { id: "bio-env", labels: ["생공", "바헬"], departmentName: "생명환경공학과, 바이오헬스융합학과", days: day3Only },
+  { id: "food-nutri", labels: ["식영", "식공"], departmentName: "식품영양학과, 식품생명공학과", days: day3Only },
+  { id: "horticulture", labels: ["원조", "화학"], departmentName: "원예생명조경학과, 화학과", days: day3Only },
+  { id: "math", labels: ["수학"], departmentName: "수학과", days: day3Only },
+  { id: "sci-tech", labels: ["과기융"], departmentName: "과학기술융합대학", days: day3Only },
 ];
 
 export const CENTER_TOP_ROW: BoothGridCell[] = [
-  { id: "contemporary-art", labels: ["현미"], departmentName: "현대미술전공", days: bothDays },
-  { id: "chem", labels: ["첨디"], departmentName: "첨단미디어디자인전공", days: bothDays },
-  { id: "craft", labels: ["공예"], departmentName: "공예전공", days: bothDays },
   { id: "city", labels: ["시디"], departmentName: "시각디자인전공", days: bothDays },
-  { id: "fashion1", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: bothDays },
-  { id: "fashion2", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: day2Only },
-  { id: "fashion3", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: day1Only },
-  { id: "fashion4", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: day3Only },
+  { id: "chem", labels: ["첨디"], departmentName: "첨단미디어디자인전공", days: bothDays },
+  { id: "contemporary-art", labels: ["현미"], departmentName: "현대미술전공", days: bothDays },
+  { id: "craft", labels: ["공예"], departmentName: "공예전공", days: bothDays },
+  { id: "fashion1", mapCellId: "fashion1", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: bothDays },
+  { id: "fashion1b", mapCellId: "fashion1", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: bothDays },
+];
+
+export const CENTER_MIDDLE_ROW: BoothGridCell[] = [
+  { id: "inmun", labels: ["인대"], departmentName: "인문대학", days: bothDays },
+  { id: "english", labels: ["영문"], departmentName: "영어영문학과", days: bothDays },
+  { id: "french", labels: ["프문"], departmentName: "프랑스문화콘텐츠전공", days: bothDays },
+  { id: "german", labels: ["독문"], departmentName: "독일문화콘텐츠전공", days: bothDays },
+  { id: "korean", labels: ["국문"], departmentName: "국어국문학과", days: bothDays },
+  { id: "ai-content", labels: ["에융"], departmentName: "AI융합콘텐츠전공", days: bothDays },
+];
+
+export const CENTER_TOP_ROW_FRIDAY: BoothGridCell[] = [
+  { id: "visual-design", labels: ["시디"], departmentName: "시각디자인전공", days: day3Only },
+  { id: "advanced-media", labels: ["첨디"], departmentName: "첨단미디어디자인전공", days: day3Only },
+  { id: "contemporary-art", labels: ["현미"], departmentName: "현대미술전공", days: day3Only },
+  { id: "craft", labels: ["공예"], departmentName: "공예전공", days: day3Only },
+  { id: "art-design", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: day3Only, wide: true },
 ];
 
 export const CENTER_BOTTOM_ROW: BoothGridCell[] = [
+  { id: "corp", labels: ["기업 및\n단체부스"], departmentName: "기업 및 단체부스", days: bothDays, wide: true },
+  { id: "gidok", labels: ["기독"], departmentName: "기독교학과", days: bothDays },
+  { id: "sahak", labels: ["사학"], departmentName: "사학과", days: bothDays },
+  { id: "ilmun", labels: ["일문"], departmentName: "일어일문학과", days: bothDays },
+  { id: "jungmun", labels: ["중문"], departmentName: "중어중문학과", days: bothDays },
+];
+
+export const CENTER_BOTTOM_ROW_FRIDAY: BoothGridCell[] = [
   {
-    id: "corp",
-    labels: ["기업 및 단체부스"],
+    id: "college",
+    labels: ["학부"],
     wide: true,
-    departmentName: "기업 및 단체부스",
-    days: bothDays,
+    departmentName: "학부",
+    days: day3Only,
   },
-  { id: "free1", labels: ["자유전공"], departmentName: "자유전공학부", days: bothDays },
-  { id: "free2", labels: ["자유전공"], departmentName: "자유전공학부", days: day2Only },
-  { id: "free3", labels: ["자유전공"], departmentName: "자유전공학부", days: day3Only },
 ];
 
 export const RIGHT_COLUMN: BoothGridCell[] = [
-  { id: "digital", labels: ["디미", "정보"], departmentName: "디지털미디어학과, 지능정보보호학부", days: bothDays },
-  { id: "software", labels: ["소융", "융전"], departmentName: "소프트웨어학과, 미래산업융합자유전공", days: bothDays },
-  { id: "ind-data", labels: ["산디", "데사"], departmentName: "산업디자인학과, 데이터사이언스학과", days: bothDays },
-  { id: "biz", labels: ["경영", "패산"], departmentName: "경영학과, 패션산업학과", days: bothDays },
-  { id: "fusion", labels: ["미산융"], departmentName: "미래산업융합대학", days: bothDays },
+  { id: "digital", labels: ["패산", "정보"], departmentName: "패션산업학과, 지능정보보호학부", days: bothDays },
+  { id: "software", labels: ["소웨", "디미"], departmentName: "소프트웨어학과, 디지털미디어학과", days: bothDays },
+  { id: "ind-data", labels: ["경영", "산디"], departmentName: "경영학과, 산업디자인학과", days: bothDays },
+  { id: "biz", labels: ["데사"], departmentName: "데이터사이언스학과", days: bothDays, tall: true },
+  { id: "fusion", labels: ["미산융"], departmentName: "미래산업융합대학", days: bothDays, tall: true },
+];
+
+export const RIGHT_COLUMN_FRIDAY: BoothGridCell[] = [
+  { id: "econ", labels: ["경제", "문정"], departmentName: "경제학과, 문헌정보학과", days: day3Only },
+  { id: "social-welfare", labels: ["사복", "스과"], departmentName: "사회복지학과, 스포츠운동과학과", days: day3Only },
+  { id: "psych", labels: ["심과", "아동"], departmentName: "심리인지과학학부, 아동학과", days: day3Only },
+  { id: "media", labels: ["언영", "행정"], departmentName: "언론영상학부, 행정학과", days: day3Only },
+  { id: "soc-sci", labels: ["사대"], departmentName: "사회과학대학", days: day3Only },
 ];
 
 export const DEPARTMENT_BOOTH_LIST: BoothListItem[] = [
@@ -193,7 +229,7 @@ export const DEPARTMENT_BOOTH_LIST: BoothListItem[] = [
   {
     id: "list-edu-uni",
     department: "사회과학대학",
-    mapCellId: "edu",
+    mapCellId: "soc-sci",
     isOpen: true,
     days: bothDays,
     checked: false,
@@ -236,14 +272,6 @@ export const DEPARTMENT_BOOTH_LIST: BoothListItem[] = [
     mapCellId: "fashion2",
     isOpen: true,
     days: day2Only,
-    checked: false,
-  },
-  {
-    id: "list-fashion3",
-    department: "아트앤디자인스쿨",
-    mapCellId: "fashion3",
-    isOpen: true,
-    days: day1Only,
     checked: false,
   },
   {
@@ -296,9 +324,195 @@ export const DEPARTMENT_BOOTH_LIST: BoothListItem[] = [
   },
 ];
 
+export const DEPARTMENT_BOOTH_LIST_FRIDAY: BoothListItem[] = [
+  {
+    id: "list-bio-env-fri",
+    department: "생명환경공학과",
+    mapCellId: "bio-env",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-food-nutri-fri",
+    department: "식품영양학과",
+    mapCellId: "food-nutri",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-horticulture-fri",
+    department: "원예생명조경학과",
+    mapCellId: "horticulture",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-chem-fri",
+    department: "화학과",
+    mapCellId: "chem",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-math-fri",
+    department: "수학과",
+    mapCellId: "math",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-visual-design-fri",
+    department: "시각디자인전공",
+    mapCellId: "visual-design",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-advanced-media-fri",
+    department: "첨단미디어디자인전공",
+    mapCellId: "advanced-media",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-contemporary-art-fri",
+    department: "현대미술전공",
+    mapCellId: "contemporary-art",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-craft-fri",
+    department: "공예전공",
+    mapCellId: "craft",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-art-design-fri",
+    department: "아트앤디자인스쿨",
+    mapCellId: "art-design",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-corp-fri",
+    department: "기업 및 단체부스",
+    mapCellId: "corp",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-free1-fri",
+    department: "자유전공학부",
+    mapCellId: "free1",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-sci-tech-fri",
+    department: "과학기술융합대학",
+    mapCellId: "sci-tech",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-econ-fri",
+    department: "경제학과",
+    mapCellId: "econ",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-doc-info-fri",
+    department: "문헌정보학과",
+    mapCellId: "doc-info",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-social-welfare-fri",
+    department: "사회복지학과",
+    mapCellId: "social-welfare",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-sports-fri",
+    department: "스포츠운동과학과",
+    mapCellId: "sports",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-psych-fri",
+    department: "심리인지과학학부",
+    mapCellId: "psych",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-child-fri",
+    department: "아동학과",
+    mapCellId: "child",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-media-fri",
+    department: "언론영상학부",
+    mapCellId: "media",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-admin-fri",
+    department: "행정학과",
+    mapCellId: "admin",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
+    id: "list-soc-sci-fri",
+    department: "사회과학대학",
+    mapCellId: "soc-sci",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+];
+
 export const getAllGridCells = (): BoothGridCell[] => [
   ...LEFT_COLUMN,
   ...CENTER_TOP_ROW,
   ...CENTER_BOTTOM_ROW,
   ...RIGHT_COLUMN,
+];
+
+export const getAllGridCellsFriday = (): BoothGridCell[] => [
+  ...LEFT_COLUMN_FRIDAY,
+  ...CENTER_TOP_ROW_FRIDAY,
+  ...CENTER_BOTTOM_ROW_FRIDAY,
+  ...RIGHT_COLUMN_FRIDAY,
 ];
