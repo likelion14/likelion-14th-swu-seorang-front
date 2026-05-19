@@ -31,7 +31,7 @@ type FeedItem = {
 
 export default function Certificate() {
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem("accessToken");
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("accessToken"));
   const [feed, setFeed] = useState<FeedItem[]>([]);
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
   const [deleteTargetId, setDeleteTargetId] = useState<number | null>(null);
@@ -39,9 +39,23 @@ export default function Certificate() {
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
-    fetch(`${BASE_URL}/api/posts`, { 
-      headers: token ? {Authorization: `Bearer ${token}`} : {},
-    })
+
+    const loadFeed = (withToken: boolean) => {
+      return fetch(`${BASE_URL}/api/posts`, {
+        headers: withToken && token ? { Authorization: `Bearer ${token}` } : {},
+      });
+    };
+
+    loadFeed(true)
+      .then(async res => {
+        if (res.status === 401) {
+          // 토큰 만료 → 제거 후 비로그인으로 재요청
+          localStorage.removeItem("accessToken");
+          setIsLoggedIn(false);
+          return loadFeed(false);
+        }
+        return res;
+      })
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setFeed(data);
