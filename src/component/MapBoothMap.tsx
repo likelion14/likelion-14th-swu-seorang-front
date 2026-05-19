@@ -8,16 +8,22 @@ import {
   CENTER_BOTTOM_ROW,
   CENTER_BOTTOM_ROW_FRIDAY,
   CENTER_MIDDLE_ROW,
+  CENTER_MIDDLE_ROW_THURSDAY,
+  CENTER_MIDDLE_ROW_FRIDAY,
   CENTER_TOP_ROW,
   CENTER_TOP_ROW_FRIDAY,
+  CENTER_TOP_ROW_THURSDAY,
+  CENTER_BOTTOM_ROW_THURSDAY,
   DEPARTMENT_BOOTH_LIST,
   DEPARTMENT_BOOTH_LIST_FRIDAY,
   LEFT_COLUMN,
   LEFT_COLUMN_FRIDAY,
+  LEFT_COLUMN_THURSDAY,
   RIGHT_COLUMN,
   RIGHT_COLUMN_FRIDAY,
+  RIGHT_COLUMN_THURSDAY,
 } from "../data/departmentBoothLayout";
-import type { FestivalDay } from "../types/booth";
+import type { FestivalDay, BoothGridCell } from "../types/booth";
 import type { VisitedBooth } from "../api/getVisitedBooths";
 import { checkVisit } from "../api/checkVisit";
 import styles from "./MapBoothMap.module.css";
@@ -137,37 +143,64 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
   const [showLoginModal, setShowLoginModal] =
   useState(false);
 
-  const leftColumn = useMemo(() => {
+  const leftColumn = useMemo<BoothGridCell[]>(() => {
     if (selectedDay === "2025-05-22") {
       return filterByDay(LEFT_COLUMN_FRIDAY);
+    }
+    if (selectedDay === "2025-05-21") {
+      // Thursday
+      // @ts-ignore – defined in data file
+      return filterByDay(LEFT_COLUMN_THURSDAY as any);
     }
     return filterByDay(LEFT_COLUMN);
   }, [selectedDay]);
 
-  const centerTop = useMemo(() => {
+  const centerTop = useMemo<BoothGridCell[]>(() => {
     if (selectedDay === "2025-05-22") {
       return filterByDay(CENTER_TOP_ROW_FRIDAY);
+    }
+    if (selectedDay === "2025-05-21") {
+      // Thursday
+      // @ts-ignore – defined in data file
+      return filterByDay(CENTER_TOP_ROW_THURSDAY as any);
     }
     return filterByDay(CENTER_TOP_ROW);
   }, [selectedDay]);
 
-  const centerMiddle = useMemo(() => {
-    if (selectedDay === "2025-05-22") {
-      return [];
-    }
+  const centerMiddle = useMemo<BoothGridCell[]>(() => {
+      if (selectedDay === "2025-05-22") {
+        // Friday: use Friday-specific middle row
+        // @ts-ignore – defined in data file
+        return filterByDay(CENTER_MIDDLE_ROW_FRIDAY as any);
+      }
+      if (selectedDay === "2025-05-21") {
+        // Thursday
+        // @ts-ignore – defined in data file
+        return filterByDay(CENTER_MIDDLE_ROW_THURSDAY as any);
+      }
     return filterByDay(CENTER_MIDDLE_ROW);
   }, [selectedDay]);
 
-  const centerBottom = useMemo(() => {
+  const centerBottom = useMemo<BoothGridCell[]>(() => {
     if (selectedDay === "2025-05-22") {
       return filterByDay(CENTER_BOTTOM_ROW_FRIDAY);
+    }
+    if (selectedDay === "2025-05-21") {
+      // Thursday
+      // @ts-ignore – defined in data file
+      return filterByDay(CENTER_BOTTOM_ROW_THURSDAY as any);
     }
     return filterByDay(CENTER_BOTTOM_ROW);
   }, [selectedDay]);
 
-  const rightColumn = useMemo(() => {
+  const rightColumn = useMemo<BoothGridCell[]>(() => {
     if (selectedDay === "2025-05-22") {
       return filterByDay(RIGHT_COLUMN_FRIDAY);
+    }
+    if (selectedDay === "2025-05-21") {
+      // Thursday
+      // @ts-ignore – defined in data file
+      return filterByDay(RIGHT_COLUMN_THURSDAY as any);
     }
     return filterByDay(RIGHT_COLUMN);
   }, [selectedDay]);
@@ -278,16 +311,17 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
           <div className={styles.centerColumn}>
             <div className={styles.centerTopRow}>
               {centerTop.map((cell) => {
-                const cellSelectionId = cell.mapCellId ?? cell.id;
-                return (
-                  <BoothInfoButton
-                    key={cell.id}
-                    labels={cell.labels}
-                    selected={selectedCellId === cellSelectionId}
-                    onClick={() => handleCellClick(cellSelectionId)}
-                  />
-                );
-              })}
+                  const cellSelectionId = cell.mapCellId ?? cell.id;
+                  return (
+                    <BoothInfoButton
+                      key={cell.id}
+                      labels={cell.labels}
+                      wide={cell.wide}
+                      selected={selectedCellId === cellSelectionId}
+                      onClick={() => handleCellClick(cellSelectionId)}
+                    />
+                  );
+                })}
             </div>
 
             <div className={styles.centerMiddleRow}>
@@ -297,6 +331,7 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
                   <BoothInfoButton
                     key={cell.id}
                     labels={cell.labels}
+                    wide={cell.wide}
                     selected={selectedCellId === cellSelectionId}
                     onClick={() => handleCellClick(cellSelectionId)}
                   />
