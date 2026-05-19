@@ -510,6 +510,14 @@ export const DEPARTMENT_BOOTH_LIST: BoothListItem[] = [
 
 export const DEPARTMENT_BOOTH_LIST_FRIDAY: BoothListItem[] = [
   {
+    id: "list-college-fri",
+    department: "학부",
+    mapCellId: "college",
+    isOpen: true,
+    days: day3Only,
+    checked: false,
+  },
+  {
     id: "list-bio-env-fri",
     department: "생명환경공학과",
     mapCellId: "bio-env",
@@ -696,6 +704,14 @@ export const DEPARTMENT_BOOTH_LIST_FRIDAY: BoothListItem[] = [
 ];
 
 export const DEPARTMENT_BOOTH_LIST_THURSDAY: BoothListItem[] = [
+  {
+    id: "list-college-thu",
+    department: "학부",
+    mapCellId: "college-thu",
+    isOpen: true,
+    days: day2Only,
+    checked: false,
+  },
   {
     id: "list-media-thu",
     department: "언론영상학부",
