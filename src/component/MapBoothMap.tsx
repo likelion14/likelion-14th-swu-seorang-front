@@ -6,10 +6,16 @@ import BoothDetailCard from "./BoothDetailCard";
 import PickerDay from "./PickerDay";
 import {
   CENTER_BOTTOM_ROW,
+  CENTER_BOTTOM_ROW_FRIDAY,
+  CENTER_MIDDLE_ROW,
   CENTER_TOP_ROW,
+  CENTER_TOP_ROW_FRIDAY,
   DEPARTMENT_BOOTH_LIST,
+  DEPARTMENT_BOOTH_LIST_FRIDAY,
   LEFT_COLUMN,
+  LEFT_COLUMN_FRIDAY,
   RIGHT_COLUMN,
+  RIGHT_COLUMN_FRIDAY,
 } from "../data/departmentBoothLayout";
 import type { FestivalDay } from "../types/booth";
 import type { VisitedBooth } from "../api/getVisitedBooths";
@@ -22,22 +28,66 @@ import CancelButton from "../assets/icon/Btn/Modal-Back.png";
 import LogoutButton from "../assets/icon/Btn/Modal-Login.png";
 
 // 학과 이름으로 mapCellId 매핑
-const getMapCellIdByDepartmentName = (departmentName: string): string => {
-  const mapping: Record<string, string> = {
+const getMapCellIdByDepartmentName = (departmentName: string, selectedDay: FestivalDay): string => {
+  const fridayMapping: Record<string, string> = {
+    "생명환경공학과": "bio-env",
+    "식품영양학과": "food-nutri",
+    "원예생명조경학과": "horticulture",
+    "화학과": "chem",
+    "수학과": "math",
+    "시각디자인전공": "visual-design",
+    "첨단미디어디자인전공": "advanced-media",
+    "현대미술전공": "contemporary-art",
+    "공예전공": "craft",
+    "아트앤디자인스쿨": "art-design",
+    "기업 및 단체부스": "corp",
+    "자유전공학부": "free1",
+    "과학기술융합대학": "sci-tech",
+    "경제학과": "econ",
+    "문헌정보학과": "doc-info",
+    "사회복지학과": "social-welfare",
+    "스포츠운동과학과": "sports",
+    "심리인지과학학부": "psych",
+    "아동학과": "child",
+    "언론영상학부": "media",
+    "행정학과": "admin",
+    "사회과학대학": "soc-sci",
+  };
+
+  const defaultMapping: Record<string, string> = {
     "미래산업융합대학": "fusion",
-    "경영학과": "biz",
-    "패션산업학과": "biz",
+    "경영학과": "ind-data",
+    "패션산업학과": "digital",
     "산업디자인학과": "ind-data",
-    "데이터사이언스학과": "ind-data",
+    "데이터사이언스학과": "biz",
     "미래산업융합자유전공": "software",
     "소프트웨어학과": "software",
-    "디지털미디어학과": "digital",
+    "디지털미디어학과": "software",
     "지능정보보호학부": "digital",
     "아트앤디자인스쿨": "fashion1",
     "시각디자인전공": "city",
     "공예전공": "craft",
     "첨단미디어디자인전공": "chem",
     "현대미술전공": "contemporary-art",
+    "인문대학": "inmun",
+    "영어영문학과": "english",
+    "프랑스문화콘텐츠전공": "french",
+    "독일문화콘텐츠전공": "german",
+    "국어국문학과": "korean",
+    "AI융합콘텐츠전공": "ai-content",
+    "기독교학과": "gidok",
+    "사학과": "sahak",
+    "일어일문학과": "ilmun",
+    "중어중문학과": "jungmun",
+    "기업 및 단체부스": "corp",
+    "생명환경공학과": "bio-env",
+    "바이오헬스융합학과": "bio-env",
+    "식품영양학과": "food-nutri",
+    "식품생명공학과": "food-nutri",
+    "원예생명조경학과": "horticulture",
+    "화학과": "horticulture",
+    "수학과": "math",
+    "과학기술융합대학": "sci-tech",
     "행정학과": "admin",
     "언론영상학부": "admin",
     "아동학과": "child",
@@ -50,6 +100,8 @@ const getMapCellIdByDepartmentName = (departmentName: string): string => {
     "사회과학대학": "edu",
     "자유전공학부": "free1",
   };
+
+  const mapping = selectedDay === "2025-05-22" ? fridayMapping : defaultMapping;
   return mapping[departmentName] || "";
 };
 
@@ -85,16 +137,46 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
   const [showLoginModal, setShowLoginModal] =
   useState(false);
 
-  const leftColumn = useMemo(() => filterByDay(LEFT_COLUMN), [selectedDay]);
-  const centerTop = useMemo(() => filterByDay(CENTER_TOP_ROW), [selectedDay]);
-  const centerBottom = useMemo(() => filterByDay(CENTER_BOTTOM_ROW), [selectedDay]);
-  const rightColumn = useMemo(() => filterByDay(RIGHT_COLUMN), [selectedDay]);
+  const leftColumn = useMemo(() => {
+    if (selectedDay === "2025-05-22") {
+      return filterByDay(LEFT_COLUMN_FRIDAY);
+    }
+    return filterByDay(LEFT_COLUMN);
+  }, [selectedDay]);
+
+  const centerTop = useMemo(() => {
+    if (selectedDay === "2025-05-22") {
+      return filterByDay(CENTER_TOP_ROW_FRIDAY);
+    }
+    return filterByDay(CENTER_TOP_ROW);
+  }, [selectedDay]);
+
+  const centerMiddle = useMemo(() => {
+    if (selectedDay === "2025-05-22") {
+      return [];
+    }
+    return filterByDay(CENTER_MIDDLE_ROW);
+  }, [selectedDay]);
+
+  const centerBottom = useMemo(() => {
+    if (selectedDay === "2025-05-22") {
+      return filterByDay(CENTER_BOTTOM_ROW_FRIDAY);
+    }
+    return filterByDay(CENTER_BOTTOM_ROW);
+  }, [selectedDay]);
+
+  const rightColumn = useMemo(() => {
+    if (selectedDay === "2025-05-22") {
+      return filterByDay(RIGHT_COLUMN_FRIDAY);
+    }
+    return filterByDay(RIGHT_COLUMN);
+  }, [selectedDay]);
   const boothList = useMemo(() => {
     if (booths.length > 0) {
       const mapped = booths.map((booth) => ({
         id: `api-${booth.id}`,
         department: booth.name,
-        mapCellId: getMapCellIdByDepartmentName(booth.name),
+        mapCellId: getMapCellIdByDepartmentName(booth.name, selectedDay),
         isOpen: booth.operatingStatus === "운영중",
         days: [selectedDay],
         checked: checkedBoothIds.has(`api-${booth.id}`),
@@ -108,7 +190,9 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
       return mapped;
     }
 
-    const filtered = filterByDay(DEPARTMENT_BOOTH_LIST);
+    const filtered = filterByDay(
+      selectedDay === "2025-05-22" ? DEPARTMENT_BOOTH_LIST_FRIDAY : DEPARTMENT_BOOTH_LIST
+    );
     const mapped = filtered.map((item) => ({
       ...item,
       checked: checkedBoothIds.has(item.id),
@@ -193,39 +277,62 @@ export default function MapBoothMap({ selectedDay, onDayChange, booths = [], loa
 
           <div className={styles.centerColumn}>
             <div className={styles.centerTopRow}>
-              {centerTop.map((cell) => (
-                <BoothInfoButton
-                  key={cell.id}
-                  labels={cell.labels}
-                  selected={selectedCellId === cell.id}
-                  onClick={() => handleCellClick(cell.id)}
-                />
-              ))}
+              {centerTop.map((cell) => {
+                const cellSelectionId = cell.mapCellId ?? cell.id;
+                return (
+                  <BoothInfoButton
+                    key={cell.id}
+                    labels={cell.labels}
+                    selected={selectedCellId === cellSelectionId}
+                    onClick={() => handleCellClick(cellSelectionId)}
+                  />
+                );
+              })}
+            </div>
+
+            <div className={styles.centerMiddleRow}>
+              {centerMiddle.map((cell) => {
+                const cellSelectionId = cell.mapCellId ?? cell.id;
+                return (
+                  <BoothInfoButton
+                    key={cell.id}
+                    labels={cell.labels}
+                    selected={selectedCellId === cellSelectionId}
+                    onClick={() => handleCellClick(cellSelectionId)}
+                  />
+                );
+              })}
             </div>
 
             <div className={styles.centerBottomRow}>
-              {centerBottom.map((cell) => (
-                <BoothInfoButton
-                  key={cell.id}
-                  labels={cell.labels}
-                  wide={cell.wide}
-                  selected={selectedCellId === cell.id}
-                  onClick={() => handleCellClick(cell.id)}
-                />
-              ))}
+              {centerBottom.map((cell) => {
+                const cellSelectionId = cell.mapCellId ?? cell.id;
+                return (
+                  <BoothInfoButton
+                    key={cell.id}
+                    labels={cell.labels}
+                    wide={cell.wide}
+                    selected={selectedCellId === cellSelectionId}
+                    onClick={() => handleCellClick(cellSelectionId)}
+                  />
+                );
+              })}
             </div>
           </div>
 
           <div className={styles.sideColumn}>
-            {rightColumn.map((cell) => (
-              <BoothInfoButton
-                key={cell.id}
-                labels={cell.labels}
-                tall={cell.labels.length > 1}
-                selected={selectedCellId === cell.id}
-                onClick={() => handleCellClick(cell.id)}
-              />
-            ))}
+            {rightColumn.map((cell) => {
+              const cellSelectionId = cell.mapCellId ?? cell.id;
+              return (
+                <BoothInfoButton
+                  key={cell.id}
+                  labels={cell.labels}
+                  tall={cell.tall ?? cell.labels.length > 1}
+                  selected={selectedCellId === cellSelectionId}
+                  onClick={() => handleCellClick(cellSelectionId)}
+                />
+              );
+            })}
           </div>
         </div>
 

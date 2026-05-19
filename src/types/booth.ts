@@ -14,8 +14,10 @@ export const DAY_OPTIONS: DayOption[] = [
 
 export interface BoothGridCell {
   id: string;
+  mapCellId?: string;
   labels: string[];
   wide?: boolean;
+  tall?: boolean;
   departmentName: string;
   days: FestivalDay[];
 }
