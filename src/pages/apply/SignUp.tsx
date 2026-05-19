@@ -65,7 +65,7 @@ export default function SignUp() {
     const navigate = useNavigate();
     const [studentIdDuplicateError, setStudentIdDuplicateError] = useState(false);
     const [phoneDuplicateError, setPhoneDuplicateError] = useState(false);
-    
+
     const majorError = submitted && search.trim() === "";
     const studentIdEmptyError = submitted && studentId.trim() === "";
     const studentIdFormatError =
@@ -81,10 +81,13 @@ export default function SignUp() {
         phone.includes("-");
 
     const isValid =
-        search.trim() !== "" ||
-        studentId.trim() !== "" ||
-        name.trim() !== "" ||
-        phone.trim() !== "";
+        search.trim() !== "" &&
+        studentId.trim() !== "" &&
+        /^\d{10}$/.test(studentId) &&
+        name.trim() !== "" &&
+        phone.trim() !== "" &&
+        !phone.includes("-") &&
+        isChecked;
 
     const filteredMajors = majors.filter((major) =>
         major.includes(search)
