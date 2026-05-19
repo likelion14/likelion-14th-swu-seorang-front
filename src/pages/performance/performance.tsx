@@ -49,19 +49,19 @@ const performancePages = [
             {
                 id: 1,
                 team: "소리마당",
-                time: "18:50-19:20",
+        
                 image: sorimadang,
             },
             {
                 id: 2,
                 team: "S.E.L",
-                time: "19:20 - 19:50",
+  
                 image: sel,
             },
             {
                 id: 3,
                 team: "한혜윰",
-                time: "19:20 - 19:50",
+
                 image: hyeyumies,
             },
         ],
@@ -86,19 +86,19 @@ const performancePages = [
             {
                 id: 4,
                 team: "TIPSSY",
-                time: "19:50 - 20:20",
+         
                 image: tipssy,
             },
             {
                 id: 5,
                 team: "청천벽력",
-                time: "19:50 - 20:20",
+           
                 image: boltfromtheblue,
             },
             {
                 id: 6,
                 team: "S.A.K.E.",
-                time: "19:50 - 20:20",
+      
                 image: SAKE,
             },
         ],
@@ -298,9 +298,7 @@ export default function HomeBooth() {
                                     {p.team}
                                 </h2>
 
-                                <p className={styles.time}>
-                                    {p.time}
-                                </p>
+    
                             </div>
                         </article>
                     ))}

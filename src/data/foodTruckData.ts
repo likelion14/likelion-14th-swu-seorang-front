@@ -24,7 +24,7 @@ export interface FoodTruckListItem {
 
 export const FOOD_TRUCK_ZONES = {
   top: { id: "science-building-1", label: "제1과학관" },
-  bottom: { id: "triangle-forest", label: "삼각숲" },
+  bottom: { id: "triangle-forest", label: "잔디광장" },
 } as const;
 
 export const FOOD_TRUCK_CATEGORIES = [
