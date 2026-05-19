@@ -19,6 +19,7 @@ export interface FoodTruckListItem {
   mapMarkerId: string;
   status: "operating" | "closed";
   menuItems: FoodTruckMenuItem[];
+  days: string[];
 }
 
 export const FOOD_TRUCK_ZONES = {
@@ -27,101 +28,106 @@ export const FOOD_TRUCK_ZONES = {
 } as const;
 
 export const FOOD_TRUCK_CATEGORIES = [
-  "닭강정",
-  "야끼소바",
-  "닭꼬치",
-  "불초밥",
-  "콩고기덮밥",
-  "크레페",
   "츄러스",
+  "분식",
+  "삼겹말이",
+  "케밥",
+  "불초밥",
+  "야끼소바",
+  "닭강정",
 ] as const;
 
 export const FOOD_TRUCK_MARKERS: FoodTruckMarker[] = [
-  { id: "dakkochi-1", labels: ["닭꼬치"] },
   { id: "churros-1", labels: ["츄러스"] },
-  { id: "dakgangjeong", labels: ["닭강정"] },
-  { id: "yakisoba", labels: ["야끼소바"] },
+  { id: "bunsik", labels: ["분식"] },
+  { id: "samgyeop", labels: ["삼겹말이"] },
+  { id: "kebab", labels: ["케밥"] },
   { id: "fire-sushi", labels: ["불초밥"] },
-  { id: "soy-meat", labels: ["콩고기"] },
-  { id: "crepe", labels: ["크레페"] },
+  { id: "yakisoba", labels: ["야끼소바"] },
+  { id: "dakgangjeong", labels: ["닭강정"] },
 ];
 
 export const FOOD_TRUCK_LIST: FoodTruckListItem[] = [
   {
-    id: "dakkochi-1",
-    name: "00닭꼬치",
-    mapMarkerId: "dakkochi-1",
-    status: "operating",
-    menuItems: [
-      { name: "닭꼬치", price: "3,000원" },
-      { name: "소세지", price: "2,500원" },
-      { name: "떡꼬치", price: "2,000원" },
-    ],
-  },
-  {
     id: "churros-1",
-    name: "00츄러스",
+    name: "츄러스",
     mapMarkerId: "churros-1",
+    status: "operating",
+    days: ["2025-05-20", "2025-05-21", "2025-05-22"],
+    menuItems: [
+      { name: "츄러스", price: "4,500원" },
+      { name: "아이스크림 츄러스", price: "6,000원" },
+      { name: "치즈볼", price: "7,000원" },
+    ],
+  },
+  {
+    id: "bunsik",
+    name: "분식",
+    mapMarkerId: "bunsik",
     status: "closed",
+    days: ["2025-05-20"],
     menuItems: [
-      { name: "츄러스", price: "2,500원" },
-      { name: "아이스크림", price: "2,000원" },
-      { name: "초코츄러스", price: "3,000원" },
+      { name: "떡볶이", price: "5,000원" },
+      { name: "순대", price: "5,000원" },
+      { name: "떡순이", price: "10,000원" },
+      { name: "떡튀순", price: "12,000원" },
     ],
   },
   {
-    id: "dakgangjeong",
-    name: "00닭강정",
-    mapMarkerId: "dakgangjeong",
+    id: "samgyeop",
+    name: "삼겹말이",
+    mapMarkerId: "samgyeop",
     status: "operating",
+    days: ["2025-05-21", "2025-05-22"],
     menuItems: [
-      { name: "닭강정", price: "5,000원" },
-      { name: "간장닭강정", price: "5,500원" },
-      { name: "마늘닭강정", price: "5,500원" },
+      { name: "김치삼겹살말이", price: "9,000원" },
+      { name: "팽이삼겹살말이", price: "9,000원" },
     ],
   },
   {
-    id: "yakisoba",
-    name: "00야끼소바",
-    mapMarkerId: "yakisoba",
+    id: "kebab",
+    name: "케밥",
+    mapMarkerId: "kebab",
     status: "operating",
+    days: ["2025-05-20", "2025-05-21", "2025-05-22"],
     menuItems: [
-      { name: "야끼소바", price: "4,000원" },
-      { name: "떡야끼소바", price: "4,500원" },
-      { name: "치즈야끼소바", price: "5,000원" },
+      { name: "치킨케밥", price: "8,000원" },
+      { name: "양케밥", price: "8,000원" },
+      { name: "콩고기케밥", price: "8,000원" },
     ],
   },
   {
     id: "fire-sushi",
-    name: "00불초밥",
+    name: "불초밥",
     mapMarkerId: "fire-sushi",
     status: "operating",
+    days: ["2025-05-20", "2025-05-21", "2025-05-22"],
     menuItems: [
-      { name: "불초밥", price: "4,500원" },
-      { name: "치즈불초밥", price: "5,000원" },
-      { name: "특불초밥", price: "5,500원" },
+      { name: "불초밥", price: "11,000원" },
+      { name: "새우초밥", price: "11,000원" },
+      { name: "연어초밥", price: "11,000원" },
     ],
   },
   {
-    id: "soy-meat",
-    name: "00콩고기",
-    mapMarkerId: "soy-meat",
-    status: "closed",
-    menuItems: [
-      { name: "콩고기덮밥", price: "4,000원" },
-      { name: "비빔콩고기", price: "4,500원" },
-      { name: "제육콩고기", price: "5,000원" },
-    ],
-  },
-  {
-    id: "crepe",
-    name: "00크레페",
-    mapMarkerId: "crepe",
+    id: "yakisoba",
+    name: "야끼소바",
+    mapMarkerId: "yakisoba",
     status: "operating",
+    days: ["2025-05-20", "2025-05-21", "2025-05-22"],
     menuItems: [
-      { name: "생크림크레페", price: "3,500원" },
-      { name: "과일크레페", price: "4,000원" },
-      { name: "초코크레페", price: "3,500원" },
+      { name: "야끼소바", price: "10,000원" },
+      { name: "불 야끼소바", price: "11,000원" },
+    ],
+  },
+  {
+    id: "dakgangjeong",
+    name: "닭강정",
+    mapMarkerId: "dakgangjeong",
+    status: "operating",
+    days: ["2025-05-20", "2025-05-21", "2025-05-22"],
+    menuItems: [
+      { name: "후라이드/양념 기본컵", price: "12,000원" },
+      { name: "후라이드/양념 더블컵", price: "22,000원" },
     ],
   },
 ];
