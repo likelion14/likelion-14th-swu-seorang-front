@@ -1,8 +1,10 @@
 import TagBoothOpen from "../assets/img/Tag-Booth-Open.svg";
 import TagBoothClose from "../assets/img/Tag-Booth-Close.svg";
+import Shuni4cutsA from "../assets/img/Shuni-4cuts-A.svg";
+import Shuni4cutsB from "../assets/img/Shuni-4cuts-B.svg";
+import Chongjang4cuts from "../assets/img/Chongjang_4cuts.svg";
 import {
   SHUNI_BOOTH_DETAIL,
-  SHUNI_FRAME_PREVIEWS,
   type ShuniBoothDetail,
 } from "../data/shuniBoothData";
 import styles from "./ShuniBoothDetailCard.module.css";
@@ -39,14 +41,9 @@ export default function ShuniBoothDetailCard({
       <p className={styles.paymentNote}>{detail.paymentNote}</p>
 
       <div className={styles.frameGallery}>
-        {SHUNI_FRAME_PREVIEWS.map((frame) => (
-          <div
-            key={frame.id}
-            className={styles.frameThumb}
-            style={{ backgroundColor: frame.color }}
-            aria-hidden
-          />
-        ))}
+        <img src={Shuni4cutsA} alt="" className={styles.frameThumb} />
+        <img src={Shuni4cutsB} alt="" className={styles.frameThumb} />
+        <img src={Chongjang4cuts} alt="" className={styles.frameThumb} />
       </div>
     </article>
   );
