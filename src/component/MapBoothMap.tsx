@@ -37,6 +37,7 @@ import LogoutButton from "../assets/icon/Btn/Modal-Login.png";
 // 학과 이름으로 mapCellId 매핑
 const getMapCellIdByDepartmentName = (departmentName: string, selectedDay: FestivalDay): string => {
   const fridayMapping: Record<string, string> = {
+    "학부": "college",
     "생명환경공학과": "bio-env",
     "바이오헬스융합학과": "bio-env",
     "식품영양학과": "food-nutri",
@@ -64,6 +65,7 @@ const getMapCellIdByDepartmentName = (departmentName: string, selectedDay: Festi
   };
 
   const thursdayMapping: Record<string, string> = {
+    "학부": "college-thu",
     "언론영상학부": "media-admin",
     "행정학과": "media-admin",
     "심리인지과학학부": "psych-child",
