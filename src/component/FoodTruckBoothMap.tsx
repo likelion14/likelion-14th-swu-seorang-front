@@ -1,12 +1,13 @@
 import { useState, useMemo } from "react";
-import StarBlue from "../assets/icon/Sticker/Star-blue-big.svg";
 import StarYellow from "../assets/icon/Sticker/Star-yellow-medium.png";
 import FoodTruckDetailCard from "./FoodTruckDetailCard";
+import PickerDay from "./PickerDay";
 import {
   FOOD_TRUCK_LIST,
   FOOD_TRUCK_ZONES,
   FOOD_TRUCK_CATEGORIES,
 } from "../data/foodTruckData";
+import { type FestivalDay } from "../types/booth";
 import styles from "./FoodTruckBoothMap.module.css";
 
 // 4글자는 2/2로 분리, 3글자는 한 줄로 유지
@@ -19,18 +20,31 @@ const processCategoryLabel = (label: string): string => {
 
 export default function FoodTruckBoothMap() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedDay, setSelectedDay] = useState<FestivalDay>("2025-05-20");
+
+  const availableCategories = useMemo(() => {
+    const categoriesForDay = FOOD_TRUCK_LIST
+      .filter((item) => item.days.includes(selectedDay))
+      .map((item) => item.name);
+    return FOOD_TRUCK_CATEGORIES.filter((cat) => categoriesForDay.includes(cat));
+  }, [selectedDay]);
 
   const filteredList = useMemo(() => {
+    let result = FOOD_TRUCK_LIST;
+
     if (selectedCategory) {
-      return FOOD_TRUCK_LIST.filter((item) => item.name.includes(selectedCategory));
+      result = result.filter((item) => item.name.includes(selectedCategory));
     }
-    return FOOD_TRUCK_LIST;
-  }, [selectedCategory]);
+
+    result = result.filter((item) => item.days.includes(selectedDay));
+
+    return result;
+  }, [selectedCategory, selectedDay]);
 
   return (
     <section className={styles.wrapper}>
       <div className={styles.mapContainer}>
-        <img src={StarBlue} alt="" className={styles.decorStarBlue} />
+        <PickerDay value={selectedDay} onChange={setSelectedDay} />
 
         <div className={styles.mapLayout}>
           <div className={`${styles.areaZone} ${styles.areaZoneTop}`}>
@@ -38,7 +52,7 @@ export default function FoodTruckBoothMap() {
           </div>
 
           <div className={styles.categoryRow}>
-            {FOOD_TRUCK_CATEGORIES.map((category) => (
+            {availableCategories.map((category) => (
               <button
                 key={category}
                 className={`${styles.categoryButton} ${
