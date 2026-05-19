@@ -34,8 +34,7 @@ export const CENTER_TOP_ROW: BoothGridCell[] = [
   { id: "chem", labels: ["첨디"], departmentName: "첨단미디어디자인전공", days: bothDays },
   { id: "contemporary-art", labels: ["현미"], departmentName: "현대미술전공", days: bothDays },
   { id: "craft", labels: ["공예"], departmentName: "공예전공", days: bothDays },
-  { id: "fashion1", mapCellId: "fashion1", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: bothDays },
-  { id: "fashion1b", mapCellId: "fashion1", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: bothDays },
+  { id: "fashion1", mapCellId: "fashion1", labels: ["아디"], departmentName: "아트앤디자인스쿨", days: bothDays, wide: true },
 ];
 
 export const CENTER_TOP_ROW_THURSDAY: BoothGridCell[] = [

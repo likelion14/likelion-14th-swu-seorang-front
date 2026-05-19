@@ -53,6 +53,10 @@
   transform: translateY(-15px);
 }
 
+.centerMiddleRowFriday {
+  transform: translateY(-38px);
+}
+
 .decorStar {
   position: absolute;
   right: 65px;
