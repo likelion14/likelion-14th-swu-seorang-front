@@ -30,23 +30,19 @@ export interface ShuniBoothDetail {
 
 /** Figma Map/BoothMap(204:3750) 내부 좌표 — 322×299 기준 % */
 export const SHUNI_BUILDING_ZONES: ShuniBuildingZone[] = [
-  { id: "parking-left", label: "주차장", left: 0, top: 6.4, width: 13.7, height: 40.1 },
-  { id: "sci1", label: "제1과학관", left: 36, top: 6.4, width: 27.6, height: 14.7 },
-  { id: "parking-center", label: "주차장", left: 48.4, top: 26.4, width: 13.7, height: 30.1 },
-  { id: "shalom", label: "샬롬\n하우스", left: 0, top: 53.2, width: 13.7, height: 40.1 },
-  { id: "sci2", label: "제2과학관", left: 64.9, top: 6.4, width: 34.2, height: 50.2 },
-  { id: "student", label: "학생누리관", left: 61.2, top: 85.3, width: 38.8, height: 14.7 },
+  { id: "sci1", label: "제1과학관", left: 0, top: 19.4, width: 35.1, height: 43.5 },
+  { id: "sci2", label: "제2과학관", left: 40.5, top: 7.7, width: 59.3, height: 43.5 },
+  { id: "student", label: "학생누리관", left: 43.8, top: 64.5, width: 56.2, height: 35.5 },
 ];
 
 export const SHUNI_BOOTH_MARKERS: ShuniBoothMarker[] = [
-  { id: "photo-trailer", labels: ["포토트레일러"], left: 25, top: 30 },
   { id: "photo-booth", labels: ["포토부스"], left: 86, top: 43 },
 ];
 
 export const SHUNI_BOOTH_DETAIL: ShuniBoothDetail = {
   id: "shuni-main",
-  title: "포토트레일러, 포토부스",
-  markerIds: ["photo-trailer", "photo-booth"],
+  title: "포토부스",
+  markerIds: ["photo-booth"],
   isOpen: true,
   prices: [
     { description: "2×6 사이즈 2장(1+1)", price: "4,000원" },
