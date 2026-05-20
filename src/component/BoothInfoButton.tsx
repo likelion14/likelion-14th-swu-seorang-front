@@ -9,7 +9,7 @@ interface BoothInfoButtonProps {
   onClick?: () => void;
 }
 
-// 4글자는 2/2로 분리, 6글자는 3/3로 분리, 포토트레일러는 2/4로 분리, 그 외는 한 줄로 유지
+// 4글자는 2/2로 분리, 5글자는 2/3로 분리, 6글자는 3/3로 분리, 포토트레일러는 2/4로 분리, 그 외는 한 줄로 유지
 const processLabels = (labels: string[]): { text: string; isSplit: boolean }[] => {
   const processed: { text: string; isSplit: boolean }[] = [];
   for (const label of labels) {
@@ -17,6 +17,9 @@ const processLabels = (labels: string[]): { text: string; isSplit: boolean }[] =
       processed.push({ text: label.slice(0, 2), isSplit: true });
       processed.push({ text: label.slice(2), isSplit: true });
     } else if (label.length === 6) {
+      processed.push({ text: label.slice(0, 3), isSplit: true });
+      processed.push({ text: label.slice(3), isSplit: true });
+    } else if (label.length === 5) {
       processed.push({ text: label.slice(0, 3), isSplit: true });
       processed.push({ text: label.slice(3), isSplit: true });
     } else if (label.length === 4) {
