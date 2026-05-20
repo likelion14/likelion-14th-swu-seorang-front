@@ -23,8 +23,8 @@ import styles from "./performance.module.css";
 
 const performancePages = [
     {
-        date: "5/22",
-        label: "5/22 (목)",
+        date: "5/21",
+        label: "5/21 (목)",
 
         artists: [
             {
@@ -68,8 +68,8 @@ const performancePages = [
     },
 
     {
-        date: "5/23",
-        label: "5/23 (금)",
+        date: "5/22",
+        label: "5/22 (금)",
 
         artists: [
             {
